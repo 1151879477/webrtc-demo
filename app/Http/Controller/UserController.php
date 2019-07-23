@@ -7,6 +7,7 @@ use Swoft\Bean\Exception\ContainerException;
 use Swoft\Context\Context;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
+use Swoole\Http\Response;
 
 
 /**
@@ -19,10 +20,8 @@ class UserController
     /**
      * @RequestMapping("index")
      */
-    public function index()
+    public function index(Response $response)
     {
-        $response = Context::mustGet()->getResponse();
-
         return $response->withContent('laksdjflaksdjflk');
 
     }
