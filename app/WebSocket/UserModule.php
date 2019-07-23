@@ -14,6 +14,7 @@ use Swoft\Http\Message\Request;
  * @package App\WebSocket
  * @WsModule(
  *     "/user",
+ *     messageParser=TokenTextParser::class,
  *     controllers={UserController::class}
  * )
  */
