@@ -20,6 +20,7 @@ class UserController
     public function index()
     {
         $response = Context::mustGet()->getResponse();
-        return ['a'=> 20];
+        $response->setContent("23234234");
+        return $response;
     }
 }
