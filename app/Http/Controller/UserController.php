@@ -2,6 +2,7 @@
 
 
 namespace App\Http\Controller;
+use Swoft\Bean\Exception\ContainerException;
 use Swoft\Context\Context;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
@@ -20,7 +21,11 @@ class UserController
     public function index()
     {
         $response = Context::mustGet()->getResponse();
-        $response->withContent('asdfasdf');
+        try {
+            $response->withContent('laksdjflaksdjflk');
+        } catch (\Exception $e) {
+            var_dump($e);
+        }
         return $response;
     }
 }
