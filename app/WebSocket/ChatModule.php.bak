@@ -12,11 +12,11 @@ use function server;
 /**
  * Class ChatModule
  *
-// * @WsModule(
-// *     "/chat",
-// *     messageParser=TokenTextParser::class,
-// *     controllers={HomeController::class}
-// * )
+ * @WsModule(
+ *     "/chat",
+ *     messageParser=TokenTextParser::class,
+ *     controllers={HomeController::class}
+ * )
  */
 class ChatModule
 {
