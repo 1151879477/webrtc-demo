@@ -8,7 +8,7 @@ use Swoft\Console\Annotation\Mapping\CommandMapping;
 use Swoft\WebSocket\Server\Annotation\Mapping\OnOpen;
 use Swoft\WebSocket\Server\Annotation\Mapping\WsModule;
 use Swoft\Http\Message\Request;
-
+use Swoft\WebSocket\Server\MessageParser\TokenTextParser;
 /**
  * Class UserModule
  * @package App\WebSocket
