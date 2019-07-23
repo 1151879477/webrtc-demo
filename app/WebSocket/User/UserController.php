@@ -5,6 +5,7 @@ namespace App\WebSocket\User;
 
 
 use Swoft\Http\Message\Request;
+use Swoft\Session\Session;
 use Swoft\WebSocket\Server\Annotation\Mapping\MessageMapping;
 use Swoft\WebSocket\Server\Annotation\Mapping\WsController;
 
@@ -21,8 +22,8 @@ class UserController
      * @param int $fd
      * @MessageMapping()
      */
-    public function login(Request $request, int $fd)
+    public function login($data)
     {
-        server()->push($fd, "user.index");
+        Session::mustGet($data);
     }
 }
