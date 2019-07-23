@@ -131,5 +131,10 @@ return [
     ],
     'cliRouter'         => [
         // 'disabledGroups' => ['demo', 'test'],
-    ]
+    ],
+    'view' => [
+        // class 配置是可以省略的, 因为 view 组件里已经配置了它
+//         'class' => \Swoft\View\Base\View::class,
+        'viewsPath' => dirname(__DIR__) . '/resource/views/',
+    ],
 ];

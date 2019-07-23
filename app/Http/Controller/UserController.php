@@ -47,4 +47,15 @@ class UserController
     }
 
 
+    /**
+     * @RequestMapping("create")
+     */
+    public function create()
+    {
+//        $view = \Swoft::getBean('view');
+        $response = Context::mustGet()->getResponse();
+        return $response->withData(['a' => 10]);
+
+    }
+
 }
