@@ -109,7 +109,7 @@ return [
     ],
     'wsServer'         => [
         'class'   => WebSocketServer::class,
-        'port'    => 90000,
+        'port'    => 9000,
         'on'      => [
             // Enable http handle
             SwooleEvent::REQUEST => bean(RequestListener::class),
