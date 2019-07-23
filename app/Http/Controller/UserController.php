@@ -22,6 +22,7 @@ class UserController
      */
     public function index()
     {
+
         return "content";
     }
 }
