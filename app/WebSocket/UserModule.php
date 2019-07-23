@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 
 namespace App\WebSocket;
@@ -13,7 +13,7 @@ use Swoft\Http\Message\Request;
  * Class UserModule
  * @package App\WebSocket
  * @WsModule(
- *     "/user"
+ *     "/user",
  *     controllers={UserController::class}
  * )
  */
