@@ -54,7 +54,8 @@ class UserController
     {
 //        $view = \Swoft::getBean('view');
         $response = Context::mustGet()->getResponse();
-        return $response->withData(['a' => 10]);
+        $r = $response->withData(['a' => 10]);
+        return $r;
 
     }
 
