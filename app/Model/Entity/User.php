@@ -15,7 +15,7 @@ use Swoft\Db\Eloquent\Model;
  *
  * @since 2.0
  *
- * @Entity(table="user")
+ * @Entity(table="users")
  */
 class User extends Model
 {
@@ -33,15 +33,7 @@ class User extends Model
      * @Column()
      * @var string
      */
-    private $name;
-
-    /**
-     * 
-     *
-     * @Column()
-     * @var int
-     */
-    private $age;
+    private $username;
 
     /**
      * 
@@ -52,119 +44,6 @@ class User extends Model
     private $password;
 
     /**
-     * 
-     *
-     * @Column(name="user_desc", prop="userDesc")
-     * @var string
-     */
-    private $userDesc;
-
-    /**
-     * 
-     *
-     * @Column()
-     * @var int|null
-     */
-    private $add;
-
-    /**
-     * 
-     *
-     * @Column()
-     * @var int|null
-     */
-    private $hahh;
-
-    /**
-     * 
-     *
-     * @Column(name="test_json", prop="testJson")
-     * @var array|null
-     */
-    private $testJson;
-
-
-    /**
-     * @param int|null $id
-     *
-     * @return void
-     */
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return void
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @param int $age
-     *
-     * @return void
-     */
-    public function setAge(int $age): void
-    {
-        $this->age = $age;
-    }
-
-    /**
-     * @param string $password
-     *
-     * @return void
-     */
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * @param string $userDesc
-     *
-     * @return void
-     */
-    public function setUserDesc(string $userDesc): void
-    {
-        $this->userDesc = $userDesc;
-    }
-
-    /**
-     * @param int|null $add
-     *
-     * @return void
-     */
-    public function setAdd(?int $add): void
-    {
-        $this->add = $add;
-    }
-
-    /**
-     * @param int|null $hahh
-     *
-     * @return void
-     */
-    public function setHahh(?int $hahh): void
-    {
-        $this->hahh = $hahh;
-    }
-
-    /**
-     * @param array|null $testJson
-     *
-     * @return void
-     */
-    public function setTestJson(?array $testJson): void
-    {
-        $this->testJson = $testJson;
-    }
-
-    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -173,19 +52,27 @@ class User extends Model
     }
 
     /**
-     * @return string
+     * @param int|null $id
      */
-    public function getName(): string
+    public function setId(?int $id): void
     {
-        return $this->name;
+        $this->id = $id;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getAge(): int
+    public function getUsername(): string
     {
-        return $this->age;
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
     }
 
     /**
@@ -197,35 +84,12 @@ class User extends Model
     }
 
     /**
-     * @return string
+     * @param string $password
      */
-    public function getUserDesc(): string
+    public function setPassword(string $password): void
     {
-        return $this->userDesc;
+        $this->password = $password;
     }
 
-    /**
-     * @return int|null
-     */
-    public function getAdd(): ?int
-    {
-        return $this->add;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getHahh(): ?int
-    {
-        return $this->hahh;
-    }
-
-    /**
-     * @return array|null
-     */
-    public function getTestJson(): ?array
-    {
-        return $this->testJson;
-    }
 
 }
