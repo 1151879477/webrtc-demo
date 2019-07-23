@@ -25,6 +25,7 @@ class UserController
 
         $response = Context::mustGet()->getResponse();
         $response->withData(['a'=>10]);
+
         return $response;
     }
 }
