@@ -33,8 +33,8 @@ class UserController
      */
     public function index()
     {
-        $user = new User([
-            'username',
+        $user = User::new([
+            'username' => 'daiyu',
             'password' => md5('123456')
         ]);
 
