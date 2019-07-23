@@ -20,9 +20,8 @@ class UserController
     /**
      * @RequestMapping("index")
      */
-    public function index(Response $response)
+    public function index()
     {
-        return $response->withContent('laksdjflaksdjflk');
 
 
     }
