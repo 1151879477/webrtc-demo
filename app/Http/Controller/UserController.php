@@ -14,7 +14,7 @@ use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 class UserController
 {
     /**
-     * @RequestMapping('index')
+     * @RequestMapping("index")
      */
     public function index()
     {
