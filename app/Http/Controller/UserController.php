@@ -2,6 +2,7 @@
 
 
 namespace App\Http\Controller;
+use Swoft\Context\Context;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 
@@ -18,6 +19,11 @@ class UserController
      */
     public function index()
     {
-        echo "233";
+        $request = Context::mustGet()->getRequest();
+
+        $response = Context::mustGet()->getResponse();
+        $response->withData(['a' => 10]);
+
+        return $response;
     }
 }
