@@ -5,7 +5,7 @@ namespace App\WebSocket;
 
 use Swoft\WebSocket\Server\Annotation\Mapping\OnOpen;
 use Swoft\WebSocket\Server\Annotation\Mapping\WsModule;
-use Swoole\Http\Request;
+use Swoft\Http\Message\Request;
 
 /**
  * Class UserModule
