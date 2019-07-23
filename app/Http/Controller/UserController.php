@@ -22,9 +22,9 @@ class UserController
 {
     /**
      * @RequestMapping("index")
-     * @Middlewares(
-     *     @Middleware(TestMiddleware::class)
-     * )
+     * @Middlewares({
+            @Middleware(TestMiddleware::class)
+     })
      */
     public function index()
     {
