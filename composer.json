@@ -16,7 +16,7 @@
     "ext-mbstring": "*",
     "swoft/db": "~2.0.0",
     "swoft/i18n": "~2.0.0",
-    "swoft/view": "~2.0.0",
+    "swoft/view": "^2.0",
     "swoft/task": "~2.0.0",
     "swoft/redis": "~2.0.0",
     "swoft/framework": "~2.0.0",
