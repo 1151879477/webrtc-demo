@@ -7,6 +7,7 @@ use App\Http\Middleware\TestMiddleware;
 use Swoft\Bean\Exception\ContainerException;
 use Swoft\Context\Context;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
+use Swoft\Http\Server\Annotation\Mapping\Middleware;
 use Swoft\Http\Server\Annotation\Mapping\Middlewares;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoole\Http\Response;
@@ -21,7 +22,9 @@ class UserController
 {
     /**
      * @RequestMapping("index")
-     * @Middlewares(TestMiddleware::class)
+     * @Middlewares(
+     *     @Middleware(TestMiddleware::class)
+     * )
      */
     public function index()
     {
