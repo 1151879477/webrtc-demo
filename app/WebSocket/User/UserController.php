@@ -25,6 +25,8 @@ class UserController
     public function login($data)
     {
 //        Session::mustGet()->push($data);
-        return "789";
+        return [
+            'a' => 10
+        ];
     }
 }
