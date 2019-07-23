@@ -23,6 +23,8 @@ class UserController
     public function index()
     {
 
-        return "content";
+        $response = Context::mustGet()->getResponse();
+        $response->withData(['a'=>10]);
+        return $response;
     }
 }
