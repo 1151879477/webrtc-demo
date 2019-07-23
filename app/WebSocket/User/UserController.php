@@ -6,7 +6,13 @@ namespace App\WebSocket\User;
 
 use Swoft\Http\Message\Request;
 use Swoft\WebSocket\Server\Annotation\Mapping\MessageMapping;
+use Swoft\WebSocket\Server\Annotation\Mapping\WsController;
 
+/**
+ * Class UserController
+ * @package App\WebSocket\User
+ * @WsController()
+ */
 class UserController
 {
 
