@@ -49,13 +49,11 @@ class UserController
 
     /**
      * @RequestMapping("create")
+     * @throws \Throwable
      */
     public function create()
     {
-//        $view = \Swoft::getBean('view');
-        $response = Context::mustGet()->getResponse();
-        $r = $response->withData(['a' => 10]);
-        return $r;
+        return view('index/index');
 
     }
 
