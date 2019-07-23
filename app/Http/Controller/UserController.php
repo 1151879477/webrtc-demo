@@ -27,6 +27,9 @@ class UserController
      *     @Middleware(TestMiddleware::class)
      * })
      * @return array
+     * @throws ContainerException
+     * @throws \ReflectionException
+     * @throws \Swoft\Db\Exception\DbException
      */
     public function index()
     {
