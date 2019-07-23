@@ -3,6 +3,7 @@
 
 namespace App\WebSocket;
 
+use App\WebSocket\User\UserController;
 use Swoft\Console\Annotation\Mapping\CommandMapping;
 use Swoft\WebSocket\Server\Annotation\Mapping\OnOpen;
 use Swoft\WebSocket\Server\Annotation\Mapping\WsModule;
@@ -13,6 +14,7 @@ use Swoft\Http\Message\Request;
  * @package App\WebSocket
  * @WsModule(
  *     "/user"
+ *     controllers={UserController::class}
  * )
  */
 class UserModule
@@ -27,11 +29,4 @@ class UserModule
         server()->push($fd, 'user module is open');
     }
 
-    /**
-     * @CommandMapping("home.index")
-     */
-    public function test(Request $request, int $fd)
-    {
-        server()->push($fd, 'home.index is open');
-    }
 }
