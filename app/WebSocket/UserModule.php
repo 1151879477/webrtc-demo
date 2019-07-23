@@ -10,7 +10,7 @@ use Swoft\WebSocket\Server\Message\Request;
  * Class UserModule
  * @package App\WebSocket
  * @WsModule(
- *     '/user'
+ *     "/user"
  * )
  */
 class UserModule
