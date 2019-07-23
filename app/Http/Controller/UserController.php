@@ -20,7 +20,7 @@ class UserController
     public function index()
     {
         $response = Context::mustGet()->getResponse();
-        $response->setContent("23234234");
+        $response->withBody('asdfasdf');
         return $response;
     }
 }
