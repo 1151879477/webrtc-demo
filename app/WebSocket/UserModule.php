@@ -17,6 +17,7 @@ class UserModule
 {
     public function onOpen(Request $request, int $fd)
     {
+        echo $fd.'is connect';
         server()->push($fd, 'user module is open');
     }
 }
