@@ -4,6 +4,7 @@
 namespace App\Http\Controller;
 
 use App\Http\Middleware\TestMiddleware;
+use App\Model\Entity\User;
 use Swoft\Bean\Exception\ContainerException;
 use Swoft\Context\Context;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
@@ -23,15 +24,25 @@ class UserController
     /**
      * @RequestMapping("index")
      * @Middlewares({
-            @Middleware(TestMiddleware::class)
-     })
+     *     @Middleware(TestMiddleware::class)
+     * })
+     * @return array
+     * @throws ContainerException
+     * @throws \ReflectionException
+     * @throws \Swoft\Db\Exception\DbException
      */
     public function index()
     {
+        $user = new User([
+            'username',
+            'password' => md5('123456')
+        ]);
 
-        $response = Context::mustGet()->getResponse();
-        $response->withData(['a'=>10]);
-
-        return $response;
+        $user->save();
+        return [
+            'code' => 0,
+            'msg' => 'success',
+            'data' => []
+        ];
     }
 }
