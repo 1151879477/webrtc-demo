@@ -19,11 +19,7 @@ class UserController
      */
     public function index()
     {
-        $request = Context::mustGet()->getRequest();
-
         $response = Context::mustGet()->getResponse();
-        $response->withData(['a' => 10]);
-
-        return $response;
+        return ['a'=> 20];
     }
 }
