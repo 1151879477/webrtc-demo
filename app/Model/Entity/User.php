@@ -43,6 +43,13 @@ class User extends Model
      */
     private $password;
 
+
+    /**
+     * @Column()
+     * @var int
+     */
+    private $online;
+
     /**
      * @return int|null
      */
@@ -89,6 +96,22 @@ class User extends Model
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOnline(): int
+    {
+        return $this->online;
+    }
+
+    /**
+     * @param int $online
+     */
+    public function setOnline(int $online): void
+    {
+        $this->online = $online;
     }
 
 

@@ -11,6 +11,7 @@ use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\Middleware;
 use Swoft\Http\Server\Annotation\Mapping\Middlewares;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
+use Swoft\Redis\Redis;
 use Swoole\Http\Response;
 
 
@@ -87,4 +88,13 @@ class UserController
 
     }
 
+    /**
+     * @RequestMapping("/user/loginList")
+     */
+    public function getLoginUserList()
+    {
+        $userList = [];
+        $userIds = Redis::hGetAll('users');
+        var_dump($userIds);
+    }
 }
