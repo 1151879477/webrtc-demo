@@ -51,9 +51,38 @@ class UserController
      * @RequestMapping("/login")
      * @throws \Throwable
      */
-    public function create()
+    public function showLoginForm()
     {
         return view('index/index');
+    }
+
+
+    /**
+     * @RequestMapping("user/login")
+     */
+    public function login()
+    {
+        $request = Context::mustGet()->getRequest();
+        $userName = $request->post('username');
+        $password = $request->post('password');
+
+        $user = User::where('username', $userName)->first();
+        if($user && md5($password) == $user->password){
+            return [
+                'result' =>[
+                    'code' => 0,
+                    'msg' => '登录成功',
+                    'data' => $user
+                ]
+            ];
+        }else{
+            return [
+                'result' => [
+                    'code' => 1,
+                    'msg' => '登录失败'
+                ]
+            ];
+        }
 
     }
 
