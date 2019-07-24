@@ -52,6 +52,10 @@
     function initWebRtc(){
         localClient = createPeerConnection();
 
+        var mediaConstraints = {
+            audio: true, // We want an audio track
+            video: true // ...and we want a video track
+        };
         navigator.mediaDevices.getUserMedia(mediaConstraints)
             .then(function(localStream) {
                 document.getElementById("local_video").srcObject = localStream;
