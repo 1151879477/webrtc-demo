@@ -24,7 +24,7 @@
             success: function(response){
                 if(response.result.code ===  0){
                     alert('登录成功');
-                    console.log(response)
+                    console.log(response.data)
                     let user = response.data;
                     localStorage.setItem('user', JSON.stringify(user));
                     localStorage.setItem('userId', user.id);
