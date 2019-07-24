@@ -31,8 +31,8 @@ class UserController
         $userId = $requestData['user_id'];
         $fd = Session::mustGet()->getFd();
 
-        Redis::hSet('user', 'user-' . $userId . '-fd', $fd);
-        Redis::hSet('user', 'user-' . $fd . '-id', $userId);
+        Redis::hSet('user-fd', 'user-id-' . $userId, $fd);
+        Redis::hSet('user-id', 'user-fd-' . $fd, $userId);
 
         return [
             'result' => [
