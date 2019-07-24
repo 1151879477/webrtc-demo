@@ -25,7 +25,7 @@ class ServerStartListener implements EventHandlerInterface
         $keys = Redis::keys('rt-*');
         foreach($keys as $key) {
             echo 'delete: '. $key;
-            list($prefix, $key) = implode($key, config('name').'-');
+            list($prefix, $key) = explode($key, config('name').'-');
             Redis::del($key);
         }
 
