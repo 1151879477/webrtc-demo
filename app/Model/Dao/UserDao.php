@@ -35,6 +35,8 @@ class UserDao
     {
         $fd = \Swoft\Context\Context::mustGet()->getRequest()->getFd();
         $userId = Redis::hGet('rt-user-id', 'user-fd-'.$fd);
+
+        var_dump('user_id', $userId);
         return $userId;
     }
 
