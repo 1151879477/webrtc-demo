@@ -20,7 +20,7 @@ class ServerStartListener implements EventHandlerInterface
 {
     public function handle(EventInterface $event): void
     {
-        echo "listener is run";
+        echo "\n\n\nlistener is run\n\n\n";
     }
 
 }
