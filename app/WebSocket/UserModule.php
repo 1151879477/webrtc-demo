@@ -40,13 +40,13 @@ class UserModule
      */
     public function onClose(Request $request, int $fd)
     {
-        $userId = Redis::hGet('user-id', 'user-fd-'.$fd);
+        $userId = Redis::hGet('rt-user-id', 'user-fd-'.$fd);
         if(!$userId){
             return;
         }
 
-        Redis::hDel('user-fd', 'user-id-', $userId);
-        Redis::hDel('user-id', 'user-fd-'. $fd);
+        Redis::hDel('rt-user-fd', 'user-id-', $userId);
+        Redis::hDel('rt-user-id', 'user-fd-'. $fd);
     }
 
 }
