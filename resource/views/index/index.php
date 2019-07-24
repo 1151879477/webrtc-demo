@@ -27,7 +27,7 @@
                     let user = response.data;
                     localStorage.setItem('user', JSON.stringify(user));
                     localStorage.setItem('userId', user.id);
-                    window.location.href="/webrtc/index"
+                    location.href="/webrtc/index"
                 }else{
                     alert('用户名或密码错误')
                 }
