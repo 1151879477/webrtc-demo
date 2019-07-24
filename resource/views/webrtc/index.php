@@ -43,7 +43,7 @@
         location.href="/user/login"
     }
 
-    $(function(){
+    $(function() {
         //user login
         var ws = new WebSocket("ws://192.168.10.252:9000/user");
         ws.onopen = function() {
@@ -60,7 +60,7 @@
             console.log('websocket is close');
         };
 
-        function webSocketLogin(){
+        function webSocketLogin() {
             let userId = getUserId();
             ws.send("user.login:" + JSON.stringify({user_id:userId}))
             getUserList()
@@ -91,6 +91,13 @@
             })
         }
     });
+
+    $(function(){
+        $('#userList li').on('click', function(){
+            let $this = $(this);
+            console.log($this.data('id'))
+        })
+    })
 
     function createPeerConnection() {
         var mediaConstraints = {
