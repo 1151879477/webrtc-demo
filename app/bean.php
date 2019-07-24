@@ -16,9 +16,6 @@ use Swoft\Server\SwooleEvent;
 use Swoft\Db\Database;
 use Swoft\Redis\RedisDb;
 
-echo "bean: \n\n\n";
-var_dump(config());
-echo "bean: \n\n\n";
 return [
     'logger'           => [
         'flushRequest' => false,
@@ -88,7 +85,7 @@ return [
         'port'     => 6379,
         'database' => 0,
         'option' => [
-            'prefix' => config('name', 'swoft').':'
+            'prefix' => env('APP_NAME', 'swoft').'-'
         ]
     ],
     'user'             => [
