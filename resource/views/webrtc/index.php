@@ -49,22 +49,20 @@
     }
 
     var localClient = null;
-    function initWebRtc(){
+
+    function initWebRtc() {
         localClient = createPeerConnection();
 
         var mediaConstraints = {
             audio: true, // We want an audio track
             video: true // ...and we want a video track
         };
-        navigator.mediaDevices.getUserMedia(mediaConstraints)
-            .then(function(localStream) {
-                document.getElementById("local_video").srcObject = localStream;
-                localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
-            })
-
-
-
+        navigator.getUserMedia(mediaConstraints, function (localStream) {
+            document.getElementById("local_video").srcObject = localStream;
+            localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
+        })
     }
+
     $(function () {
         //user login
         initWebRtc();
