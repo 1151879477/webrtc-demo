@@ -43,8 +43,33 @@
         };
 
         function webSocketLogin(){
-            let userId = localStorage.getItem('userId');
+            let userId = getUserId();
             ws.send("user.login:" + JSON.stringify({user_id:userId}))
+        }
+        function getUserId(){
+            return localStorage.getItem('userId');
+        }
+        function getUserList(){
+            $.ajax({
+                url: "/user/loginList",
+                type: 'get'
+                params: {
+                    user_id: getUserId()
+                },
+                success: function(response){
+                    if(response.result.code !== 0){
+                        alert(response.result.msg || '接口返回异常: \n' + JSON.stringify(response))
+                        return;
+                    }
+
+                    let data = response.result.data;
+
+                    $('#userList').empty()
+                    data.list.map(item => {
+                        $('#userList').append(`<li>${item.username}</li>`)
+                    })
+                }
+            })
         }
     });
 
