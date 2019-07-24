@@ -51,7 +51,9 @@
             setInterval(webSocketLogin, 1000);
         };
         ws.onmessage = function(e) {
+            console.log(e.data)
             let msg = JSON.parse(e.data);
+
 
             switch (msg.type) {
                 case "refreshUserList":
