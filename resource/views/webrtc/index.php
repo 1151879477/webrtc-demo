@@ -31,7 +31,7 @@
     </div>
     <div class="video-container">
         <!--  自己-->
-        <video src=""></video>
+        <video src="" id="local_video"></video>
     </div>
 </div>
 
@@ -48,13 +48,29 @@
         location.href = "/user/login"
     }
 
+    var localClient = null;
+    function initWebRtc(){
+        localClient = createPeerConnection();
+
+        navigator.mediaDevices.getUserMedia(mediaConstraints)
+            .then(function(localStream) {
+                document.getElementById("local_video").srcObject = localStream;
+                localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
+            })
+
+
+
+    }
     $(function () {
         //user login
+        initWebRtc();
         var ws = new WebSocket("ws://192.168.10.252:9000/user");
+
         ws.onopen = function () {
             console.log('websocket is open');
             setInterval(webSocketLogin, 1000);
         };
+
         ws.onmessage = function (e) {
             try {
                 const msg = JSON.parse(e.data)
@@ -93,7 +109,7 @@
     $(function () {
         $('#userList').on('click', 'li', function () {
             let $this = $(this);
-            console.log($this.data('id'))
+
         })
     });
 
@@ -103,8 +119,8 @@
             iceServers: [     // Information about ICE servers - Use your own!
                 {
                     urls: "turn://47.90.123.45:3479",
-                    username: "ling2",
-                    credential: "ling1234"
+                    username: "daiyu",
+                    credential: "adcfd1+.+"
                 }
             ]
         }, mediaConstraints);
