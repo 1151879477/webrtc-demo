@@ -36,9 +36,6 @@ class UserModule
     /**
      * @param Request $request
      * @param int $fd
-     * @throws \ReflectionException
-     * @throws \Swoft\Bean\Exception\ContainerException
-     * @throws \Swoft\Db\Exception\DbException
      * @OnClose()
      */
     public function onClose(Request $request, int $fd)
