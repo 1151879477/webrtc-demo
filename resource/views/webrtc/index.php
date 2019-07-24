@@ -49,12 +49,10 @@
         ws.onopen = function() {
             console.log('websocket is open');
             setInterval(webSocketLogin, 1000);
-            getUserList()
         };
         ws.onmessage = function(e) {
-            // Receives a message.
-            //message
             console.log(e)
+            let msg = JSON.parse(e)
         };
 
         ws.onclose = function() {
