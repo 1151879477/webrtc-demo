@@ -98,6 +98,7 @@ class UserController
         $page = $request->get('page', 1);
         $users = User::whereIn('id', $userIds)->paginate(intval($page), 20);
 
+        var_dump($userIds);
         return [
             'result' => [
                 'code' => 0,
