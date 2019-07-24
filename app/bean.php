@@ -16,6 +16,9 @@ use Swoft\Server\SwooleEvent;
 use Swoft\Db\Database;
 use Swoft\Redis\RedisDb;
 
+echo "bean: \n\n\n";
+var_dump(config());
+echo "bean: \n\n\n";
 return [
     'logger'           => [
         'flushRequest' => false,
