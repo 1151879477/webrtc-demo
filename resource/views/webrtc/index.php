@@ -72,7 +72,7 @@
             $.ajax({
                 url: "/user/loginList",
                 type: 'get',
-                params: {
+                data: {
                     user_id: getUserId()
                 },
                 success: function(response){
