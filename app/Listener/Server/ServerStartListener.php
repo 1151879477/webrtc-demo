@@ -20,16 +20,12 @@ class ServerStartListener implements EventHandlerInterface
 {
     public function handle(EventInterface $event): void
     {
-        echo "\n\n\n";
-
         $keys = Redis::keys('rt-*');
         foreach($keys as $key) {
             echo 'delete: '. $key;
             list($prefix, $key) = explode( config('name').'-', $key);
             Redis::del($key);
         }
-
-        echo "\n\n\n";
     }
 
 }

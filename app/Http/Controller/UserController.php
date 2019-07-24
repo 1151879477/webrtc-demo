@@ -93,8 +93,17 @@ class UserController
      */
     public function getLoginUserList()
     {
-        $userList = [];
+        $request = Context::mustGet()->getRequest();
         $userIds = Redis::hGetAll('user-fd');
-        var_dump($userIds);
+        $page = $request->get('page', 1);
+        $users = User::whereIn('id', $userIds)->paginate(intval($page), 20);
+
+        return [
+            'result' => [
+                'code' => 0,
+                'msg' => 'success',
+                'data' => $users
+            ]
+        ];
     }
 }
