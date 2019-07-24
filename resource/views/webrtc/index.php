@@ -1,7 +1,7 @@
 <html>
 <head>
     <style>
-        .video-container{
+        .video-container {
             width: 400px;
             height: 300px;
             border: 1px solid #18bc9c;
@@ -19,13 +19,13 @@
 </head>
 <body>
 <div>
-<!--视频-->
+    <!--视频-->
     <div class="video-container">
-<!-- 好友-->
+        <!-- 好友-->
         <video src=""></video>
     </div>
     <div class="video-container">
-<!--  自己-->
+        <!--  自己-->
         <video src=""></video>
     </div>
 </div>
@@ -39,49 +39,53 @@
 <script>
 
     var userId = localStorage.getItem('userId');
-    if(!userId){
-        location.href="/user/login"
+    if (!userId) {
+        location.href = "/user/login"
     }
 
-    $(function() {
+    $(function () {
         //user login
         var ws = new WebSocket("ws://192.168.10.252:9000/user");
-        ws.onopen = function() {
+        ws.onopen = function () {
             console.log('websocket is open');
             setInterval(webSocketLogin, 1000);
         };
-        ws.onmessage = function(e) {
-            console.log(e.data)
-            let msg = JSON.parse(e.data);
+        ws.onmessage = function (e) {
+            try {
+                const msg = JSON.parse(e.data)
 
-
-            switch (msg.type) {
-                case "refreshUserList":
-                    getUserList();
-                    break;
+                switch (msg.type) {
+                    case "refreshUserList":
+                        getUserList();
+                        break;
+                }
+            } catch (e) {
+                return;
             }
         };
 
-        ws.onclose = function() {
+        ws.onclose = function () {
             console.log('websocket is close');
         };
 
         function webSocketLogin() {
             let userId = getUserId();
-            ws.send("user.login:" + JSON.stringify({user_id:userId}))
+            ws.send("user.login:" + JSON.stringify({user_id: userId}))
         }
-        function getUserId(){
+
+        function getUserId() {
             return localStorage.getItem('userId');
         }
-        function getUserList(){
+
+        function getUserList() {
             $.ajax({
                 url: "/user/loginList",
                 type: 'get',
                 data: {
                     user_id: getUserId()
                 },
-                success: function(response){
-                    if(response.result.code !== 0){
+                success: function (response) {
+                    if (response.result.code !== 0) {
                         alert(response.result.msg || '接口返回异常: \n' + JSON.stringify(response))
                         return;
                     }
@@ -97,17 +101,15 @@
         }
     });
 
-    $(function(){
-        $('#userList li').on('click', function(){
+    $(function () {
+        $('#userList li').on('click', function () {
             let $this = $(this);
             console.log($this.data('id'))
         })
     })
 
     function createPeerConnection() {
-        var mediaConstraints = {
-
-        };
+        var mediaConstraints = {};
         return new RTCPeerConnection({
             iceServers: [     // Information about ICE servers - Use your own!
                 {
