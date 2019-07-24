@@ -51,8 +51,13 @@
             setInterval(webSocketLogin, 1000);
         };
         ws.onmessage = function(e) {
-            console.log(e)
-            let msg = JSON.parse(e)
+            let msg = JSON.parse(e.data);
+
+            switch (msg.type) {
+                case "refreshUserList":
+                    getUserList();
+                    break;
+            }
         };
 
         ws.onclose = function() {
