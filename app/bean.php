@@ -85,7 +85,7 @@ return [
         'port'     => 6379,
         'database' => 0,
         'option' => [
-            'prefix' => 'swoft:'
+            'prefix' => config('base.name', 'swoft').':'
         ]
     ],
     'user'             => [

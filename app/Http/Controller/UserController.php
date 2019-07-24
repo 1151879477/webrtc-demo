@@ -68,15 +68,15 @@ class UserController
 
         $user = User::where('username', $userName)->first();
 
-        if($user && md5($password) == $user->getPassword()){
+        if ($user && md5($password) == $user->getPassword()) {
             return [
-                'result' =>[
+                'result' => [
                     'code' => 0,
                     'msg' => '登录成功',
                     'data' => $user
                 ]
             ];
-        }else{
+        } else {
             return [
                 'result' => [
                     'code' => 1,
