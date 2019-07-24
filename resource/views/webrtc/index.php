@@ -81,7 +81,7 @@
         }
 
         function getUserList() {
-            ws.send('user.loginList' + JSON.stringify({user_id: getUserId()}))
+            ws.send('user.loginList:' + JSON.stringify({user_id: getUserId()}))
         }
     });
 
