@@ -2,8 +2,8 @@
 <head>
     <style>
         .video-container{
-            width: 800px;
-            height: 600px;
+            width: 400px;
+            height: 300px;
             border: 1px solid #18bc9c;
         }
 
