@@ -48,7 +48,7 @@ class UserController
 
 
     /**
-     * @RequestMapping("create")
+     * @RequestMapping("/login")
      * @throws \Throwable
      */
     public function create()
