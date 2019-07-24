@@ -26,6 +26,7 @@
                     alert('登录成功');
                     let user = response.data;
                     localStorage.setItem('user', JSON.stringify(user));
+                    console.log(user)
                     localStorage.setItem('userId', user.id);
                     location.href="/webrtc/index"
                 }else{
