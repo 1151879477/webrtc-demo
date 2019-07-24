@@ -21,8 +21,8 @@
                 password: $('input[name=password]').val()
             },
             type: "post",
-            success: function(result){
-                if(result.code ===  0){
+            success: function(response){
+                if(response.result.code ===  0){
                     alert('登录成功')
                 }else{
                     alert('用户名或密码错误')
