@@ -66,9 +66,9 @@ class UserController
         $userName = $request->post('username');
         $password = $request->post('password');
 
+        var_dump($userName);
         $user = User::where('username', $userName)->first();
 
-        var_dump($user);
         if($user && md5($password) == $user->password){
             return [
                 'result' =>[
