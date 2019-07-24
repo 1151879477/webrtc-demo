@@ -33,7 +33,7 @@ class UserDao
 
     public function getLoginUserId()
     {
-        $fd= \Swoft\Context\Context::mustGet()->getFd();
+        $fd = \Swoft\Context\Context::mustGet()->getRequest()->getFd();
         $userId = Redis::hGet('rt-user-id', 'user-fd', $fd);
         return $userId;
     }
