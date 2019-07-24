@@ -6,6 +6,10 @@
             height: 600px;
             border: 1px solid #18bc9c;
         }
+
+        #userList {
+            float: right;
+        }
     </style>
 </head>
 <body>
