@@ -15,6 +15,11 @@
             width: 100px;
             border: 1px solid #cccccc;
         }
+
+        #userList {
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -90,7 +95,7 @@
             let $this = $(this);
             console.log($this.data('id'))
         })
-    })
+    });
 
     function createPeerConnection() {
         var mediaConstraints = {};
