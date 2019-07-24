@@ -11,7 +11,7 @@
 </div>
 
 <div>
-    <a href="/user/reg">注册</a>
+    <a href="/reg">注册</a>
 </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
