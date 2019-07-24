@@ -48,7 +48,7 @@
         var ws = new WebSocket("ws://192.168.10.252:9000/user");
         ws.onopen = function() {
             console.log('websocket is open');
-            webSocketLogin();
+            setInterval(webSocketLogin, 1000)
         };
         ws.onmessage = function(e) {
             // Receives a message.
