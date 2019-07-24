@@ -1,14 +1,23 @@
 <html>
+<head>
+    <style>
+        .video-container{
+            width: 800px;
+            height: 600px;
+            border: 1px solid #18bc9c;
+        }
+    </style>
+</head>
 <body>
 <div>
 <!--视频-->
-    <div>
+    <div class="video-container">
 <!-- 好友-->
-        <video src="" height="500px"></video>
+        <video src=""></video>
     </div>
-    <div>
+    <div class="video-container">
 <!--  自己-->
-        <video src="" height="300px;"></video>
+        <video src=""></video>
     </div>
 </div>
 
