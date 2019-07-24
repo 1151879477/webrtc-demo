@@ -12,6 +12,8 @@ use Swoft\WebSocket\Server\Annotation\Mapping\OnOpen;
 use Swoft\WebSocket\Server\Annotation\Mapping\WsModule;
 use Swoft\Http\Message\Request;
 use Swoft\WebSocket\Server\MessageParser\TokenTextParser;
+use Swoole\WebSocket\Server;
+
 /**
  * Class UserModule
  * @package App\WebSocket
@@ -34,11 +36,11 @@ class UserModule
     }
 
     /**
-     * @param Request $request
+     * @param Server $server
      * @param int $fd
      * @OnClose()
      */
-    public function onClose(Request $request, int $fd)
+    public function onClose(Server $server, int $fd)
     {
         $userId = Redis::hGet('rt-user-id', 'user-fd-'.$fd);
         if(!$userId){
