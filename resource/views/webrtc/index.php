@@ -17,11 +17,30 @@
 </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-socket-js/1.0.0/web_socket.min.js"></script>
 <script>
     $(function(){
+        //user login
+        var ws = new WebSocket("ws://192.168.10.252:9000/user");
+        ws.onopen = function() {
+            console.log('websocket is open');
+            webSocketLogin();
+        };
+        ws.onmessage = function(e) {
+            // Receives a message.
+            //message
+            console.log(e)
+        };
 
+        ws.onclose = function() {
+            console.log('websocket is close');
+        };
+
+
+        function webSocketLogin(){
+            let userId = localStorage.getItem('userId');
+            ws.send("user.login" + JSON.stringify({user_id:userId}))
+        }
     });
 
     function createPeerConnection() {
