@@ -59,6 +59,7 @@ class UserController
             ->paginate(intval(1), 20);
 
         return [
+            'type' => "user.loginList",
             'result' => [
                 'code' => 0,
                 'msg' => "success",
