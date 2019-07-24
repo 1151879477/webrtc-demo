@@ -4,6 +4,7 @@
 namespace App\Http\Controller;
 
 use App\Http\Middleware\TestMiddleware;
+use App\Model\Dao\UserDao;
 use App\Model\Entity\User;
 use Swoft\Bean\Exception\ContainerException;
 use Swoft\Context\Context;
@@ -94,11 +95,11 @@ class UserController
     public function getLoginUserList()
     {
         $request = Context::mustGet()->getRequest();
-        $userIds = Redis::hGetAll('rt-user-id');
         $page = $request->get('page', 1);
-        $users = User::whereIn('id', $userIds)->paginate(intval($page), 20);
 
-        var_dump($userIds);
+        $userDao = new UserDao();
+        $users =$userDao->getLoginUsers($page, 20);
+
         return [
             'result' => [
                 'code' => 0,
