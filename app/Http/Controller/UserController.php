@@ -150,6 +150,7 @@ class UserController
         $userDao = new UserDao();
         $userDao->setReturnQuery(true);
         $users = $userDao->getLoginUsers()
+            ->where('id', '<>', $userId)
             ->paginate(intval($page), 20);
 
         return [
