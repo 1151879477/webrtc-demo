@@ -19,6 +19,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-socket-js/1.0.0/web_socket.min.js"></script>
 <script>
+
+    var userId = localStorage.getItem('userId');
+    if(!userId){
+        location.href="/user/login"
+    }
+
     $(function(){
         //user login
         var ws = new WebSocket("ws://192.168.10.252:9000/user");

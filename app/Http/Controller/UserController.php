@@ -55,7 +55,12 @@ class UserController
      */
     public function showLoginForm()
     {
-        return view('index/index');
+        return view('auth/login');
+    }
+
+    public function showRegForm()
+    {
+        return view('auth/reg');
     }
 
 
@@ -87,6 +92,44 @@ class UserController
             ];
         }
 
+    }
+
+    /**
+     * @RequestMapping("/user/reg")
+     */
+    public function reg()
+    {
+        $request = Context::mustGet()->getRequest();
+        $username = $request->post('username');
+        $password = $request->post('passowrd');
+
+        //TODO: validate input params
+
+
+        $exists = User::where('username', $username)->count();
+        if($exists > 0){
+            return [
+                'result' => [
+                    'code' => 1,
+                    'msg' => '用户已经存在了',
+                    'data' => []
+                ]
+            ];
+        }
+
+
+        $user = User::new([
+            'username' => $username,
+            'password' => md5($password)
+        ]);
+
+        return [
+            'result' => [
+                'code' => 0,
+                'msg' => '用户已经存在了',
+                'data' => $user
+            ]
+        ];
     }
 
     /**
