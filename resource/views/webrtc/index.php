@@ -48,7 +48,8 @@
         var ws = new WebSocket("ws://192.168.10.252:9000/user");
         ws.onopen = function() {
             console.log('websocket is open');
-            setInterval(webSocketLogin, 1000)
+            setInterval(webSocketLogin, 1000);
+            getUserList()
         };
         ws.onmessage = function(e) {
             // Receives a message.
@@ -63,7 +64,6 @@
         function webSocketLogin() {
             let userId = getUserId();
             ws.send("user.login:" + JSON.stringify({user_id:userId}))
-            getUserList()
         }
         function getUserId(){
             return localStorage.getItem('userId');
