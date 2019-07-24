@@ -98,7 +98,9 @@ class UserController
         $page = $request->get('page', 1);
 
         $userDao = new UserDao();
-        $users =$userDao->getLoginUsers($page, 20);
+        $userDao->setReturnQuery(true);
+        $users = $userDao->getLoginUsers()->where('id', '<>', $userDao->getLoginUserId())
+            ->paginate(intval($page), 20);
 
         return [
             'result' => [

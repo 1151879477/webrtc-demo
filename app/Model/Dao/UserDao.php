@@ -5,6 +5,7 @@ namespace App\Model\Dao;
 
 
 use App\Model\Entity\User;
+use Co\Context;
 use Swoft\Redis\Redis;
 
 class UserDao
@@ -27,6 +28,21 @@ class UserDao
         }else{
             return $query->paginate($page, $perPage);
         }
+    }
+
+
+    public function getLoginUserId()
+    {
+        $fd= \Swoft\Context\Context::mustGet()->getFd();
+        $userId = Redis::hGet('rt-user-id', 'user-fd', $fd);
+        return $userId;
+    }
+
+    public function getLoginUser()
+    {
+        $userId = $this->getLoginUserId();
+        $user = User::whereKey($userId)->first();
+        return $user;
     }
 
     /**
