@@ -55,7 +55,9 @@
                 const msg = JSON.parse(e.data)
                 switch (msg.type) {
                     case "user.loginList":
-                        $('#userList').empty()
+                        console.log("user.loginList");
+                        $('#userList').empty();
+                        console.log(msg.result);
                         msg.result.data.list.map(item => {
                             $('#userList').append(`<li data-id="${item.id}">${item.username}</li>`)
                         });
