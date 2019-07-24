@@ -11,6 +11,9 @@
             position: absolute;
             top: 0;
             right: 0;
+            height: 600px;
+            width: 100px;
+            border: 1px solid #cccccc;
         }
     </style>
 </head>
