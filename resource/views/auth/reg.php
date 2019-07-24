@@ -17,7 +17,7 @@
         let user = {
             username: $('input[name=username]').val(),
             password: $('input[name=password]').val()
-        }
+        };
 
         if (user.username === "" || user.password === "") {
             alert('用户名或密码不能为空!');
