@@ -127,6 +127,7 @@ class UserController
             'username' => $username,
             'password' => md5($password)
         ]);
+        $user->save();
 
         return [
             'result' => [
