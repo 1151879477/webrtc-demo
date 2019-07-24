@@ -36,7 +36,6 @@
             console.log('websocket is close');
         };
 
-
         function webSocketLogin(){
             let userId = localStorage.getItem('userId');
             ws.send("user.login:" + JSON.stringify({user_id:userId}))

@@ -94,7 +94,7 @@ class UserController
     public function getLoginUserList()
     {
         $userList = [];
-        $userIds = Redis::hGetAll('users');
+        $userIds = Redis::hGetAll('user-fd');
         var_dump($userIds);
     }
 }
