@@ -53,7 +53,7 @@
         ws.onmessage = function (e) {
             try {
                 const msg = JSON.parse(e.data)
-
+                console.log(msg.type)
                 switch (msg.type) {
                     case "refreshUserList":
                         getUserList();
