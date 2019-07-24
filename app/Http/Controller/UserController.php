@@ -106,7 +106,7 @@ class UserController
     {
         $request = Context::mustGet()->getRequest();
         $username = $request->post('username');
-        $password = $request->post('passowrd');
+        $password = $request->post('password');
 
         //TODO: validate input params
 
