@@ -29,7 +29,7 @@ class UserController
         $requestData = json_decode($data, true);
         //TODO:: token 验证
         $userId = $requestData['user_id'];
-        $fd = Session::mustGet()->getFd();
+        $fd = Session::mustGet()->getRequest()->getFd();
 
         Redis::hSet('rt-user-fd', 'user-id-' . $userId, $fd);
         Redis::hSet('rt-user-id', 'user-fd-' . $fd, $userId);
