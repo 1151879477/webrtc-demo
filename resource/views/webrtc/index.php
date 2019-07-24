@@ -39,7 +39,7 @@
 
         function webSocketLogin(){
             let userId = localStorage.getItem('userId');
-            ws.send("user.login" + JSON.stringify({user_id:userId}))
+            ws.send("user.login:" + JSON.stringify({user_id:userId}))
         }
     });
 
