@@ -57,10 +57,10 @@
             audio: true, // We want an audio track
             video: true // ...and we want a video track
         };
-        navigator.getUserMedia(mediaConstraints, function (localStream) {
+        navigator.mediaDevices.getUserMedia().then(localStream => {
             document.getElementById("local_video").srcObject = localStream;
             localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
-        })
+        });
     }
 
     $(function () {
