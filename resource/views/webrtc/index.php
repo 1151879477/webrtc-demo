@@ -91,7 +91,7 @@
     });
 
     $(function () {
-        $('#userList li').on('click', function () {
+        $('#userList').on('click', 'li', function () {
             let $this = $(this);
             console.log($this.data('id'))
         })
