@@ -113,7 +113,6 @@ return [
         'on'      => [
             // Enable http handle
             SwooleEvent::REQUEST => bean(RequestListener::class),
-            SwooleEvent::START => bean(\App\Listener\Server\ServerStartListener::class),
         ],
         'debug'   => env('SWOFT_DEBUG', 0),
         /* @see WebSocketServer::$setting */

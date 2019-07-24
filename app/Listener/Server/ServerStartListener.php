@@ -9,12 +9,12 @@ use Swoft\Event\Annotation\Mapping\Listener;
 use Swoft\Event\EventHandlerInterface;
 use Swoft\Event\EventInterface;
 use Swoft\Redis\Redis;
+use Swoft\Server\SwooleEvent;
 
 /**
  * Class ServerStartListener
  * @package App\Listener\Server
- * @Bean()
- * @Listener()
+ * @Listener(SwooleEvent::START)
  */
 class ServerStartListener implements EventHandlerInterface
 {
