@@ -4,6 +4,7 @@
 namespace App\WebSocket\User;
 
 
+use App\Model\Dao\UserDao;
 use Swoft\Http\Message\Request;
 use Swoft\Redis\Redis;
 use Swoft\Session\Session;
@@ -39,6 +40,29 @@ class UserController
                 'code' => 0,
                 'msg' => "success",
                 'data' => []
+            ]
+        ];
+    }
+
+    /**
+     * @MessageMapping()
+     */
+    public function loginList($data)
+    {
+        $requestData = json_decode($data, true);
+        $userId = $requestData['user_id'];
+
+        $userDao = new UserDao();
+        $userDao->setReturnQuery(true);
+        $users = $userDao->getLoginUsers()
+            ->where('id', '<>', $userId)
+            ->paginate(intval(1), 20);
+
+        return [
+            'result' => [
+                'code' => 0,
+                'msg' => "success",
+                'data' => $users
             ]
         ];
     }

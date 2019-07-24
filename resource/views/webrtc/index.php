@@ -54,8 +54,11 @@
             try {
                 const msg = JSON.parse(e.data)
                 switch (msg.type) {
-                    case "refreshUserList":
-                        getUserList();
+                    case "user.loginList":
+                        $('#userList').empty()
+                        msg.result.data.list.map(item => {
+                            $('#userList').append(`<li data-id="${item.id}">${item.username}</li>`)
+                        });
                         break;
                 }
             } catch (e) {
@@ -78,26 +81,7 @@
         }
 
         function getUserList() {
-            $.ajax({
-                url: "/user/loginList",
-                type: 'get',
-                data: {
-                    user_id: getUserId()
-                },
-                success: function (response) {
-                    if (response.result.code !== 0) {
-                        alert(response.result.msg || '接口返回异常: \n' + JSON.stringify(response))
-                        return;
-                    }
-
-                    let data = response.result.data;
-
-                    $('#userList').empty()
-                    data.list.map(item => {
-                        $('#userList').append(`<li data-id="${item.id}">${item.username}</li>`)
-                    })
-                }
-            })
+            ws.send('user.loginList' + JSON.stringify({user_id: getUserId()}))
         }
     });
 
