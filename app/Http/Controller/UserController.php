@@ -68,7 +68,7 @@ class UserController
 
         $user = User::where('username', $userName)->first();
 
-        if($user && md5($password) == $user->password){
+        if($user && md5($password) == $user->getPassword()){
             return [
                 'result' =>[
                     'code' => 0,
