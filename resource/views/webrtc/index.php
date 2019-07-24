@@ -85,7 +85,7 @@
 
                     $('#userList').empty()
                     data.list.map(item => {
-                        $('#userList').append(`<li>${item.username}</li>`)
+                        $('#userList').append(`<li data-id="${item.id}">${item.username}</li>`)
                     })
                 }
             })
