@@ -20,7 +20,12 @@ class ServerStartListener implements EventHandlerInterface
 {
     public function handle(EventInterface $event): void
     {
-        echo "\n\n\nlistener is run\n\n\n";
+        echo "\n\n\n";
+
+        $keys = Redis::keys('rt-*');
+        var_dump($keys);
+
+        echo "\n\n\n";
     }
 
 }
