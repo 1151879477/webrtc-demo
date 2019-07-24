@@ -8,7 +8,9 @@
         }
 
         #userList {
-            float: right;
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     </style>
 </head>
