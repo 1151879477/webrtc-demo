@@ -58,6 +58,11 @@ class UserController
         return view('auth/login');
     }
 
+    /**
+     * @return \Swoft\Http\Message\Response
+     * @throws \Throwable
+     * @RequestMapping("/reg")
+     */
     public function showRegForm()
     {
         return view('auth/reg');
