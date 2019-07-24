@@ -45,6 +45,7 @@
         function webSocketLogin(){
             let userId = getUserId();
             ws.send("user.login:" + JSON.stringify({user_id:userId}))
+            getUserList()
         }
         function getUserId(){
             return localStorage.getItem('userId');
@@ -52,7 +53,7 @@
         function getUserList(){
             $.ajax({
                 url: "/user/loginList",
-                type: 'get'
+                type: 'get',
                 params: {
                     user_id: getUserId()
                 },
