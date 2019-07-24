@@ -58,7 +58,7 @@ class UserController
 
 
     /**
-     * @RequestMapping("user/login")
+     * @RequestMapping("/user/login")
      */
     public function login()
     {
