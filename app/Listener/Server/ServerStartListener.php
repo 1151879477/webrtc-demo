@@ -23,7 +23,7 @@ class ServerStartListener implements EventHandlerInterface
         echo "\n\n\n";
 
         $keys = Redis::keys('rt-*');
-        var_dump($keys);
+        var_dump(config());
 
         echo "\n\n\n";
     }
