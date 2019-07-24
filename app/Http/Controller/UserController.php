@@ -96,10 +96,11 @@ class UserController
     {
         $request = Context::mustGet()->getRequest();
         $page = $request->get('page', 1);
+        $userId = $request->get('user_id');
 
         $userDao = new UserDao();
         $userDao->setReturnQuery(true);
-        $users = $userDao->getLoginUsers()->where('id', '<>', $userDao->getLoginUserId())
+        $users = $userDao->getLoginUsers()->where('id', '<>', $userId)
             ->paginate(intval($page), 20);
 
         return [

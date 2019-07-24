@@ -31,20 +31,8 @@ class UserDao
     }
 
 
-    public function getLoginUserId()
+    public function getUserById($userId)
     {
-        $fd = \Swoft\Context\Context::mustGet()->getRequest()->getFd();
-        $userId = Redis::hGet('rt-user-id', 'user-fd-'.$fd);
-
-        $all = Redis::hGetAll('rt-user-id');
-        var_dump('user_id: '.$userId);
-        var_dump($all);
-        return $userId;
-    }
-
-    public function getLoginUser()
-    {
-        $userId = $this->getLoginUserId();
         $user = User::whereKey($userId)->first();
         return $user;
     }
