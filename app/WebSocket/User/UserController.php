@@ -35,9 +35,9 @@ class UserController
         Redis::hSet('rt-user-id', 'user-fd-' . $fd, $userId);
 
         //通知其他人， 有新用户上线，
-        server()->sendToAll(json_encode([
+        server()->sendToSome(json_encode([
             "type" => 'refreshUserList'
-        ]));
+        ]), [], [$fd]);
 
         return [
             'result' => [
