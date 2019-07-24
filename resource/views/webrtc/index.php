@@ -70,6 +70,7 @@
         function webSocketLogin() {
             let userId = getUserId();
             ws.send("user.login:" + JSON.stringify({user_id: userId}))
+            getUserList();
         }
 
         function getUserId() {
