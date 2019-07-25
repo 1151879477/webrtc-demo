@@ -68,10 +68,11 @@
         });
     }
 
+
+    var ws = new WebSocket("ws://192.168.10.252:9000/user");
     $(function () {
         //user login
         initWebRtc();
-        var ws = new WebSocket("ws://192.168.10.252:9000/user");
 
         ws.onopen = function () {
             console.log('websocket is open');
