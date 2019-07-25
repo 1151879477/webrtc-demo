@@ -79,6 +79,10 @@ class UserController
         $connectUserId = $requestData['connectUserId'];
         $userDao = new UserDao();
         $connectUserFd = $userDao->getUserFdByUserId($connectUserId);
-        server()->sendTo($connectUserFd, $requestData['offer']);
+        $sendData = [
+            'type' => 'user.offer',
+            'offer' => $requestData['offer']
+        ];
+        server()->sendTo($connectUserFd, json_encode($sendData));
     }
 }
