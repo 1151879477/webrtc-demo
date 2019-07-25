@@ -27,7 +27,7 @@
     <!--视频-->
     <div class="video-container">
         <!-- 好友-->
-        <video src=""></video>
+        <video src="" id="remote_video"></video>
     </div>
     <div class="video-container">
         <!--  自己-->
@@ -76,7 +76,14 @@
 
         answerClient.ontrack = function(e){
             console.log(e);
-        }
+            const remoteVideo = docuemtn.getElementById('remote_video');
+            if (remoteVideo.srcObject !== e.streams[0]) {
+                remoteVideo.srcObject = e.streams[0];
+                console.log('pc2 received remote stream');
+                const streamVisualizer = new StreamVisualizer(e.streams[0], canvas);
+                streamVisualizer.start();
+            }
+        };
 
 
         var mediaConstraints = {
