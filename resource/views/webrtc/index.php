@@ -112,7 +112,7 @@
                                     .then(() => {
                                         ws.send('user.answer:'+JSON.stringify({
                                             user_id: getUserId(),
-                                            answer: answer
+                                            answer: answer,
                                             connectUserId: msg.connectUserId
                                         }))
                                     })
