@@ -57,7 +57,7 @@
         localClient = createPeerConnection();
         answerClient = createPeerConnection();
 
-        localClient.onicecandidate = function (e) {
+        answerClient.onicecandidate = function (e) {
             if (!e || !e.candidate) return
             ws.send('user.candidate:', JSON.stringify({
                 user_id: getUserId(),
@@ -104,11 +104,7 @@
                     case "user.offer":
                         const offer = msg.offer;
                         localOffer = false;
-
-                        console.log(msg)
-                        console.log(offer)
                         const sessionDescription = new RTCSessionDescription(offer)
-                        console.log(sessionDescription);
                         answerClient.setRemoteDescription(sessionDescription);
                         answerClient.createAnswer()
                             .then(answer => {
