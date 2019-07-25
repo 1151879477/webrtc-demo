@@ -5,6 +5,7 @@ namespace App\WebSocket\User;
 
 
 use App\Model\Dao\UserDao;
+use Co\Context;
 use Swoft\Http\Message\Request;
 use Swoft\Redis\Redis;
 use Swoft\Session\Session;
@@ -31,6 +32,7 @@ class UserController
         //TODO:: token 验证
         $userId = $requestData['user_id'];
         $fd = Session::mustGet()->getRequest()->getFd();
+
 
         Redis::hSet('rt-user-fd', 'user-id-' . $userId, $fd);
         Redis::hSet('rt-user-id', 'user-fd-' . $fd, $userId);
@@ -66,5 +68,17 @@ class UserController
                 'data' => $users
             ]
         ];
+    }
+    
+    /**
+     * @MessageMapping()
+     */
+    public function offer($data)
+    {
+        $requestData = json_decode($data, true);
+        $connectUserId = $requestData['connectUserId'];
+        $userDao = new UserDao();
+        $connectUserFd = $userDao->getUserFdByUserId($connectUserId);
+        server()->sendTo($connectUserFd, $requestData['offer']);
     }
 }

@@ -60,8 +60,8 @@
         navigator.mediaDevices.getUserMedia(mediaConstraints).then(localStream => {
             console.log(localStream);
             let localVideo = document.getElementById("local_video")
-                localVideo.srcObject = localStream;
-            localVideo.onloadedmetadata = function(e) {
+            localVideo.srcObject = localStream;
+            localVideo.onloadedmetadata = function (e) {
                 localVideo.play();
             };
             localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
@@ -104,19 +104,27 @@
             getUserList();
         }
 
-        function getUserId() {
-            return localStorage.getItem('userId');
-        }
 
         function getUserList() {
             ws.send('user.loginList:' + JSON.stringify({user_id: getUserId()}))
         }
     });
 
+    function getUserId() {
+        return localStorage.getItem('userId');
+    }
+
     $(function () {
         $('#userList').on('click', 'li', function () {
             let $this = $(this);
-
+            localClient.createOffer()
+                .then(offer => {
+                    localClient.setLocalDescription(offer)
+                        .then(() => {
+                            console.log($this.data('id'));
+                            ws.send('user.offer:' + JSON.stringify({user_id: getUserId(), connectUserId: $this.data('id'), offer: offer}))
+                        })
+                })
         })
     });
 

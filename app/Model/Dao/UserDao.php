@@ -37,6 +37,11 @@ class UserDao
         return $user;
     }
 
+    public function getUserFdByUserId($userId)
+    {
+        return Redis::hGet('rt-user-fd', 'user-id-' . $userId);
+    }
+
     /**
      * @return bool
      */
