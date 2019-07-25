@@ -51,9 +51,9 @@ return [
     ],
     'db'               => [
         'class'    => Database::class,
-        'dsn'      => 'mysql:dbname=webrtc;host=127.0.0.1',
-        'username' => 'root',
-        'password' => 'adcfd1...',
+        'dsn'      => 'mysql:dbname='.env('DB_DATABASENAME').';host='.env('DB_HOST'),
+        'username' => env('DB_USERNAME'),
+        'password' => env('DB_PASSWORD'),
     ],
     'db2'              => [
         'class'      => Database::class,
