@@ -60,17 +60,20 @@
         localClient.onicecandidate = function (e) {
             console.log('answer client on icecandidate');
             if (!e || !e.candidate) return
-            ws.send('user.candidate:', JSON.stringify({
-                user_id: getUserId(),
-                candidateType: 'officeClient',
-                connectUserId: remoteUserId,
-                candidate: e.candidate
-            }))
         };
 
         answerClient.onicecandidate = function(e) {
+            if(e.candidate){
+                console.log(e.candidate);
+                ws.send('user.candidate:', JSON.stringify({
+                    user_id: getUserId(),
+                    candidateType: 'answerClient',
+                    connectUserId: remoteUserId,
+                    candidate: e.candidate
+                }))
+            }
             console.log('answerClient is on icecandidate');
-        }
+        };
 
 
         var mediaConstraints = {
