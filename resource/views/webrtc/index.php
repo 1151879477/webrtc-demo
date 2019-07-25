@@ -59,7 +59,7 @@
 
         localClient.onicecandidate = function (e) {
             if (!e || !e.candidate) return
-            ws.send('user:candidate:', {
+            ws.send('user.candidate:', {
                 user_id: getUserId(),
                 candidateType: 'officeClient',
                 connectUserId: remoteUserId,
