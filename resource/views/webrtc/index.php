@@ -48,18 +48,31 @@
         location.href = "/user/login"
     }
 
+    var localOffer = false;
     var localClient = null;
+    var answerClient = null;
+    var remoteUserId = null;
 
     function initWebRtc() {
         localClient = createPeerConnection();
+        answerClient = createPeerConnection();
+
+        localClient.onicecandidate = function (e) {
+            if (!e || !e.candidate) return
+            ws.send('user:candidate:', {
+                user_id: getUserId(),
+                candidateType: 'officeClient',
+                connectUserId: remoteUserId,
+                candidate: e.candidate
+            })
+        };
 
         var mediaConstraints = {
             audio: true, // We want an audio track
             video: true // ...and we want a video track
         };
         navigator.mediaDevices.getUserMedia(mediaConstraints).then(localStream => {
-            console.log(localStream);
-            let localVideo = document.getElementById("local_video")
+            let localVideo = document.getElementById("local_video");
             localVideo.srcObject = localStream;
             localVideo.onloadedmetadata = function (e) {
                 localVideo.play();
@@ -75,7 +88,6 @@
         initWebRtc();
 
         ws.onopen = function () {
-            console.log('websocket is open');
             setInterval(webSocketLogin, 5000);
         };
 
@@ -89,6 +101,33 @@
                             $('#userList').append(`<li data-id="${item.id}">${item.username}</li>`)
                         });
                         break;
+                    case "user.offer":
+                        const offer = msg.offer;
+                        localOffer = false;
+
+                        answerClient.setRemoteDescription(offer);
+                        answerClient.createAnswer()
+                            .then(answer => {
+                                answerClient.setLocalDescription(answer)
+                                    .then(() => {
+                                        ws.send('user.answer:'.JSON.stringify({
+                                            user_id: getUserId(),
+                                            answer: answer
+                                        }))
+                                    })
+                            });
+                        break;
+                    case "user.answer":
+                        const answer = msg.answer;
+                        localClient.setRemoteDescription(answer);
+                        break;
+                    case "user.candidate":
+                        const candidate = msg.candidate;
+                        if (candidate.candidateType === 'officeClient') {
+                            answerClient.addIceCandidate(candidate)
+                        } else {
+                            localClient.addIceCandidate(candidate)
+                        }
                 }
             } catch (e) {
                 return;
@@ -118,12 +157,18 @@
     $(function () {
         $('#userList').on('click', 'li', function () {
             let $this = $(this);
+            localOffer = true;
+            remoteUserId = $this.data('id');
             localClient.createOffer()
                 .then(offer => {
                     localClient.setLocalDescription(offer)
                         .then(() => {
                             console.log($this.data('id'));
-                            ws.send('user.offer:' + JSON.stringify({user_id: getUserId(), connectUserId: $this.data('id'), offer: offer}))
+                            ws.send('user.offer:' + JSON.stringify({
+                                user_id: getUserId(),
+                                connectUserId: $this.data('id'),
+                                offer: offer
+                            }))
                         })
                 })
         })

@@ -79,12 +79,50 @@ class UserController
         $connectUserId = $requestData['connectUserId'];
         $userDao = new UserDao();
 
-        echo $connectUserId;
-        echo "\n";
         $connectUserFd = $userDao->getUserFdByUserId($connectUserId);
         $sendData = [
             'type' => 'user.offer',
-            'offer' => $requestData['offer']
+            'offer' => $requestData['offer'],
+            'connectUserId' => $requestData['user_id']
+        ];
+        server()->sendTo($connectUserFd, json_encode($sendData));
+    }
+
+
+    /**
+     * @param $data
+     * @MessageMapping()
+     */
+    public function answer($data)
+    {
+        $requestData = json_decode($data, true);
+        $connectUserId = $requestData['connectUserId'];
+        $userDao = new UserDao();
+
+        $connectUserFd = $userDao->getUserFdByUserId($connectUserId);
+        $sendData = [
+            'type' => 'user.offer',
+            'answer' => $requestData['answer']
+        ];
+        server()->sendTo($connectUserFd, json_encode($sendData));
+    }
+
+
+    /**
+     * @param $data
+     * @MessageMapping()
+     */
+    public function candidate($data)
+    {
+        $requestData = json_decode($data, true);
+        $connectUserId = $requestData['connectUserId'];
+        $userDao = new UserDao();
+
+        $connectUserFd = $userDao->getUserFdByUserId($connectUserId);
+        $sendData = [
+            'type' => 'user.candidate',
+            'candidate' => $requestData['candidate'],
+            'candidateType' => $requestData['candidateType']
         ];
         server()->sendTo($connectUserFd, json_encode($sendData));
     }
