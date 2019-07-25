@@ -58,13 +58,12 @@
         answerClient = createPeerConnection();
 
         localClient.onicecandidate = function (e) {
-            console.log('answer client on icecandidate');
             if (!e || !e.candidate) return
+
         };
 
         answerClient.onicecandidate = function(e) {
             if(e.candidate){
-                console.log(e.candidate);
                 ws.send('user.candidate:', JSON.stringify({
                     user_id: getUserId(),
                     candidateType: 'answerClient',
@@ -134,10 +133,8 @@
                     case "user.candidate":
                         const candidate = msg.candidate;
                         if (candidate.candidateType === 'officeClient') {
-                            console.log('add Ice answerClient');
                             answerClient.addIceCandidate(candidate)
                         } else {
-                            console.log('add ICE OfferClient');
                             localClient.addIceCandidate(candidate)
                         }
                 }
