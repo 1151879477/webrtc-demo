@@ -82,7 +82,7 @@
                 console.log('add remote video');
             }
             remoteVideo.onloadedmetadata = function (e) {
-                localVideo.play();
+                remoteVideo.play();
             };
         };
 
