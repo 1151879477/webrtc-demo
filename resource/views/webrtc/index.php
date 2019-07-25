@@ -106,6 +106,7 @@
                         localOffer = false;
 
                         const sessionDescription = new RTCSessionDescription(offer)
+                        console.log(sessionDescription);
                         answerClient.setRemoteDescription(sessionDescription);
                         answerClient.createAnswer()
                             .then(answer => {
