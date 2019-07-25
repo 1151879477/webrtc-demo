@@ -57,10 +57,10 @@
         localClient = createPeerConnection();
         answerClient = createPeerConnection();
 
-        localClient.onicecandidate = function (e) {
-            if (!e || !e.candidate) return
-
-        };
+        // localClient.onicecandidate = function (e) {
+        //     if (!e || !e.candidate)
+        //       return
+        // };
 
         answerClient.onicecandidate = function (e) {
             if (e.candidate) {
@@ -198,9 +198,7 @@
         return new RTCPeerConnection({
             iceServers: [     // Information about ICE servers - Use your own!
                 {
-                    urls: "turn://47.90.123.45:3478",
-                    username: "daiyu",
-                    credential: "adcfd1+.+"
+                    urls: "stun:stun.l.google.com:19302",
                 }
             ]
         }, mediaConstraints);
