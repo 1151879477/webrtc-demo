@@ -79,9 +79,6 @@
             const remoteVideo = document.getElementById('remote_video');
             if (remoteVideo.srcObject !== e.streams[0]) {
                 remoteVideo.srcObject = e.streams[0];
-                console.log('pc2 received remote stream');
-                const streamVisualizer = new StreamVisualizer(e.streams[0], canvas);
-                streamVisualizer.start();
             }
         };
 
