@@ -124,8 +124,10 @@
                     case "user.candidate":
                         const candidate = msg.candidate;
                         if (candidate.candidateType === 'officeClient') {
+                            console.log('add Ice answerClient');
                             answerClient.addIceCandidate(candidate)
                         } else {
+                            console.log('add ICE OfferClient');
                             localClient.addIceCandidate(candidate)
                         }
                 }
