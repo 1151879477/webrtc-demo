@@ -105,7 +105,6 @@
         initWebRtc();
 
         ws.onopen = function () {
-
             setInterval(webSocketLogin, 2000);
         };
 
@@ -116,13 +115,15 @@
                     case "user.loginList":
                         $('#userList').empty();
                         msg.result.data.list.map(item => {
-                            $('#userList').append(`<li data-id="${item.id}">${item.username}</li>`)
+                            $('#userList').append(`<li><button data-id="${item.id}">${item.username}</button></li>`)
                         });
                         break;
                     case "user.offer":
                         const offer = msg.offer;
                         localOffer = false;
-                        const sessionDescription = new RTCSessionDescription(offer)
+                        console.log(offer);
+                        const sessionDescription = new RTCSessionDescription(offer);
+
                         answerClient.setRemoteDescription(sessionDescription);
                         answerClient.createAnswer()
                             .then(answer => {
@@ -174,7 +175,7 @@
     }
 
     $(function () {
-        $('#userList').on('click', 'li', function () {
+        $('#userList').on('click', 'button', function () {
             let $this = $(this);
             localOffer = true;
             remoteUserId = $this.data('id');
