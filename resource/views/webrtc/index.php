@@ -94,6 +94,7 @@
                 localVideo.play();
             };
             localVideo.volume = 0.0;
+            console.log(localStream.getTracks());
             localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
         });
     }
