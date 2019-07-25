@@ -57,7 +57,7 @@
             audio: true, // We want an audio track
             video: true // ...and we want a video track
         };
-        navigator.mediaDevices.getUserMedia().then(localStream => {
+        navigator.mediaDevices.getUserMedia(mediaConstraints).then(localStream => {
             document.getElementById("local_video").srcObject = localStream;
             localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
         });
