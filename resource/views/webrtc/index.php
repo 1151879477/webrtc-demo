@@ -58,6 +58,7 @@
         answerClient = createPeerConnection();
 
         answerClient.onicecandidate = function (e) {
+            console.log('answer client on icecandidate');
             if (!e || !e.candidate) return
             ws.send('user.candidate:', JSON.stringify({
                 user_id: getUserId(),
