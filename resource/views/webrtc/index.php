@@ -113,6 +113,7 @@
                                         ws.send('user.answer:'+JSON.stringify({
                                             user_id: getUserId(),
                                             answer: answer
+                                            connectUserId: msg.connectUserId
                                         }))
                                     })
                             });
@@ -165,7 +166,6 @@
                 .then(offer => {
                     localClient.setLocalDescription(offer)
                         .then(() => {
-                            console.log($this.data('id'));
                             ws.send('user.offer:' + JSON.stringify({
                                 user_id: getUserId(),
                                 connectUserId: $this.data('id'),
