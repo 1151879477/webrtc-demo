@@ -101,7 +101,7 @@ class UserController
 
         $connectUserFd = $userDao->getUserFdByUserId($connectUserId);
         $sendData = [
-            'type' => 'user.offer',
+            'type' => 'user.answer',
             'answer' => $requestData['answer']
         ];
         server()->sendTo($connectUserFd, json_encode($sendData));
