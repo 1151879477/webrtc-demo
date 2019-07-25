@@ -110,7 +110,7 @@
                             .then(answer => {
                                 answerClient.setLocalDescription(answer)
                                     .then(() => {
-                                        ws.send('user.answer:'.JSON.stringify({
+                                        ws.send('user.answer:'+JSON.stringify({
                                             user_id: getUserId(),
                                             answer: answer
                                         }))
