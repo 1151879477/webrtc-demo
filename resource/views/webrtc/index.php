@@ -105,6 +105,7 @@
                         const offer = msg.offer;
                         localOffer = false;
 
+                        console.log(offer);
                         answerClient.setRemoteDescription(offer);
                         answerClient.createAnswer()
                             .then(answer => {
