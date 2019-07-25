@@ -79,12 +79,9 @@
             remoteVideo.play();
         };
         answerClient.ontrack = function (e) {
-            console.log(e);
-            if (remoteVideo.srcObject !== e.streams[0]) {
-                remoteVideo.srcObject = e.streams[0];
-                console.log('add remote video');
-            }
+            document.getElementById("remoteVideo").srcObject = e.streams[0];
         };
+
 
 
         var mediaConstraints = {
