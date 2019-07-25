@@ -76,7 +76,7 @@
 
         answerClient.ontrack = function(e){
             console.log(e);
-            const remoteVideo = docuemtn.getElementById('remote_video');
+            const remoteVideo = document.getElementById('remote_video');
             if (remoteVideo.srcObject !== e.streams[0]) {
                 remoteVideo.srcObject = e.streams[0];
                 console.log('pc2 received remote stream');
