@@ -57,7 +57,7 @@
         localClient = createPeerConnection();
         answerClient = createPeerConnection();
 
-        answerClient.onicecandidate = function (e) {
+        localClient.onicecandidate = function (e) {
             console.log('answer client on icecandidate');
             if (!e || !e.candidate) return
             ws.send('user.candidate:', JSON.stringify({
@@ -67,6 +67,11 @@
                 candidate: e.candidate
             }))
         };
+
+        answerClient.onicecandidate = function(e) {
+            console.log('answerClient is on icecandidate');
+        }
+
 
         var mediaConstraints = {
             audio: true, // We want an audio track
