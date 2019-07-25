@@ -76,7 +76,7 @@
 
         ws.onopen = function () {
             console.log('websocket is open');
-            setInterval(webSocketLogin, 1000);
+            setInterval(webSocketLogin, 5000);
         };
 
         ws.onmessage = function (e) {
