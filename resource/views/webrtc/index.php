@@ -198,7 +198,7 @@
         return new RTCPeerConnection({
             iceServers: [     // Information about ICE servers - Use your own!
                 {
-                    urls: "turn://47.90.123.45:3479",
+                    urls: "turn://47.90.123.45:3478",
                     username: "daiyu",
                     credential: "adcfd1+.+"
                 }
