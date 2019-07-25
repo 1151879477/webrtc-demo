@@ -105,8 +105,8 @@
                         const offer = msg.offer;
                         localOffer = false;
 
-                        console.log(offer);
-                        answerClient.setRemoteDescription(offer);
+                        const sessionDescription = new RTCSessionDescription(offer)
+                        answerClient.setRemoteDescription(sessionDescription);
                         answerClient.createAnswer()
                             .then(answer => {
                                 answerClient.setLocalDescription(answer)
@@ -121,7 +121,7 @@
                         break;
                     case "user.answer":
                         const answer = msg.answer;
-                        localClient.setRemoteDescription(answer);
+                        localClient.setRemoteDescription(new RTCSessionDescription(answer));
                         break;
                     case "user.candidate":
                         const candidate = msg.candidate;
