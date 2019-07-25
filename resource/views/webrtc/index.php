@@ -93,6 +93,7 @@
             localVideo.onloadedmetadata = function (e) {
                 localVideo.play();
             };
+            locationVideo.volume = 0.0;
             localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
         });
     }
