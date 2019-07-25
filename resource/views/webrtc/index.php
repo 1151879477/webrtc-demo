@@ -58,6 +58,7 @@
             video: true // ...and we want a video track
         };
         navigator.mediaDevices.getUserMedia(mediaConstraints).then(localStream => {
+            console.log(localStream);
             document.getElementById("local_video").srcObject = localStream;
             localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
         });
