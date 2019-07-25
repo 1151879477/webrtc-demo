@@ -98,7 +98,7 @@
     }
 
 
-    var ws = new WebSocket("wss://webrtc.dai-yu.net/user");
+    var ws = new WebSocket("ws://webrtc.dai-yu.net/user");
     $(function () {
         //user login
         initWebRtc();
