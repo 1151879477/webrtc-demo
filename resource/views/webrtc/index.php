@@ -104,6 +104,7 @@
         initWebRtc();
 
         ws.onopen = function () {
+
             setInterval(webSocketLogin, 2000);
         };
 
