@@ -59,7 +59,11 @@
         };
         navigator.mediaDevices.getUserMedia(mediaConstraints).then(localStream => {
             console.log(localStream);
-            document.getElementById("local_video").srcObject = localStream;
+            let localVideo = document.getElementById("local_video")
+                localVideo.srcObject = localStream;
+            localVideo.onloadedmetadata = function(e) {
+                localVideo.play();
+            };
             localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
         });
     }
