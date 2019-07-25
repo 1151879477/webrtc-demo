@@ -80,6 +80,9 @@
             if (remoteVideo.srcObject !== e.streams[0]) {
                 remoteVideo.srcObject = e.streams[0];
             }
+            remoteVideo.onloadedmetadata = function (e) {
+                localVideo.play();
+            };
         };
 
 
