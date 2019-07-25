@@ -62,8 +62,8 @@
 
         };
 
-        answerClient.onicecandidate = function(e) {
-            if(e.candidate){
+        answerClient.onicecandidate = function (e) {
+            if (e.candidate) {
                 ws.send('user.candidate:', JSON.stringify({
                     user_id: getUserId(),
                     candidateType: 'answerClient',
@@ -74,16 +74,16 @@
             console.log('answerClient is on icecandidate');
         };
 
-        answerClient.ontrack = function(e){
+        const remoteVideo = document.getElementById('remote_video');
+        remoteVideo.onloadedmetadata = function (e) {
+            remoteVideo.play();
+        };
+        answerClient.ontrack = function (e) {
             console.log(e);
-            const remoteVideo = document.getElementById('remote_video');
             if (remoteVideo.srcObject !== e.streams[0]) {
                 remoteVideo.srcObject = e.streams[0];
                 console.log('add remote video');
             }
-            remoteVideo.onloadedmetadata = function (e) {
-                remoteVideo.play();
-            };
         };
 
 
@@ -130,7 +130,7 @@
                             .then(answer => {
                                 answerClient.setLocalDescription(answer)
                                     .then(() => {
-                                        ws.send('user.answer:'+JSON.stringify({
+                                        ws.send('user.answer:' + JSON.stringify({
                                             user_id: getUserId(),
                                             answer: answer,
                                             connectUserId: msg.connectUserId
