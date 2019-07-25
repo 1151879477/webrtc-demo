@@ -74,6 +74,10 @@
             console.log('answerClient is on icecandidate');
         };
 
+        answerClient.ontrack = function(e){
+            console.log(e);
+        }
+
 
         var mediaConstraints = {
             audio: true, // We want an audio track
