@@ -198,8 +198,29 @@
         return new RTCPeerConnection({
             iceServers: [     // Information about ICE servers - Use your own!
                 {
-                    urls: "stun:stun.l.google.com:19302"
-                }
+                    urls: " stun.xten.com:3478"
+                },
+              {
+                urls: "stun.l.google.com:19302"
+              },
+              {
+                urls: "stun1.l.google.com:19302"
+              },
+              {
+                urls: "stun2.l.google.com:19302"
+              },
+              {
+                urls: "stun3.l.google.com:19302"
+              },
+              {
+                urls: "stun4.l.google.com:19302"
+              },
+              {
+                urls: "stun.ekiga.net"
+              },
+              {
+                urls: "stun.ideasip.com"
+              }
             ]
         }, mediaConstraints);
     }
