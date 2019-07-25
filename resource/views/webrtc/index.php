@@ -88,7 +88,7 @@
         initWebRtc();
 
         ws.onopen = function () {
-            setInterval(webSocketLogin, 5000);
+            setInterval(webSocketLogin, 2000);
         };
 
         ws.onmessage = function (e) {
