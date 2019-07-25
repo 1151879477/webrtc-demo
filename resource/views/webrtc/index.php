@@ -79,7 +79,7 @@
             remoteVideo.play();
         };
         answerClient.ontrack = function (e) {
-            document.getElementById("remoteVideo").srcObject = e.streams[0];
+            remoteVideo.srcObject = e.streams[0];
         };
 
 
