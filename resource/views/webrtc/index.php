@@ -216,7 +216,6 @@
             "stun:stun.voxgratia.org\n" +
             "stun:stun.xten.com"
         let arr = string.split("\n")
-        console.log(arr);
         return new RTCPeerConnection({
             iceServers: [
                 {"urls": arr}
