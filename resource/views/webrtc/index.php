@@ -97,6 +97,10 @@
             remoteVideo.srcObject = e.streams[0];
         };
 
+        localClient.ontrack = function(){
+            remoteVideo.srcObject = e.streams[0];
+        };
+
         var mediaConstraints = {
             audio: true, // We want an audio track
             video: true // ...and we want a video track
