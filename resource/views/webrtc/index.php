@@ -110,7 +110,7 @@
 
         ws.onmessage = function (e) {
             try {
-                const msg = JSON.parse(e.data)
+                const msg = JSON.parse(e.data);
                 switch (msg.type) {
                     case "user.loginList":
                         $('#userList').empty();
