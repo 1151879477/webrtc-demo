@@ -198,7 +198,8 @@
         var mediaConstraints = {};
         return new RTCPeerConnection({
             iceServers: [
-              {"urls":["stun:stun.l.google.com:19302"]}
+                {"urls":["stun:stun.l.google.com:19302"]},
+                {"urls":["stun:api2.dai-yu.net:3478"]},
             ]
         }, mediaConstraints);
     }
