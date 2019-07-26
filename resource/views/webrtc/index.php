@@ -98,6 +98,7 @@
         };
 
         localClient.ontrack = function(e){
+            console.log(e);
             remoteVideo.srcObject = e.streams[0];
         };
 
