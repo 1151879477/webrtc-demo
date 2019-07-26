@@ -78,6 +78,8 @@
 
         localClient.onicecandidate = function (e) {
             if (e.candidate) {
+                console.log('localClient onicecandidate event');
+                console.log('send localClient');
                 ws.send('user.candidate:', JSON.stringify({
                     user_id: getUserId(),
                     candidateType: 'offerClient',
@@ -94,11 +96,12 @@
         };
 
         answerClient.ontrack = function (e) {
+            console.log('answerClient ontrack');
             remoteVideo.srcObject = e.streams[0];
         };
 
         localClient.ontrack = function(e){
-            console.log('localClient.ontrack', e);
+            console.log('localClient ontrack');
             remoteVideo.srcObject = e.streams[0];
         };
 
@@ -144,12 +147,14 @@
                         localOffer = false;
                         const sessionDescription = new RTCSessionDescription(offer);
 
+                        console.log('get remote offer and save');
                         remoteUserId = msg.connectUserId;
                         answerClient.setRemoteDescription(sessionDescription);
                         answerClient.createAnswer()
                             .then(answer => {
                                 answerClient.setLocalDescription(answer)
                                     .then(() => {
+                                        console.log('send answer');
                                         ws.send('user.answer:' + JSON.stringify({
                                             user_id: getUserId(),
                                             answer: answer,
@@ -159,14 +164,17 @@
                             });
                         break;
                     case "user.answer":
-                        const answer = msg.answer;
+                        const answer = msg.answer
+                        console.log('localCent set answer');
                         localClient.setRemoteDescription(new RTCSessionDescription(answer));
                         break;
                     case "user.candidate":
                         const candidate = msg.candidate;
                         if (candidate.candidateType === 'officeClient') {
+                            console.log('get localClient candidate answerClient add');
                             answerClient.addIceCandidate(candidate)
                         } else {
+                            console.log('get answerClient candidate localClient add');
                             localClient.addIceCandidate(candidate)
                         }
                 }
@@ -200,10 +208,13 @@
             let $this = $(this);
             localOffer = true;
             remoteUserId = $this.data('id');
+            console.log('localClient create Offer');
             localClient.createOffer()
                 .then(offer => {
                     localClient.setLocalDescription(offer)
                         .then(() => {
+                            console.log('save local description');
+                            console.log('send ws offer');
                             ws.send('user.offer:' + JSON.stringify({
                                 user_id: getUserId(),
                                 connectUserId: $this.data('id'),
