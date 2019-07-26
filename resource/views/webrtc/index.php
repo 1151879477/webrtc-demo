@@ -70,6 +70,20 @@
                     connectUserId: remoteUserId,
                     candidate: e.candidate
                 }))
+
+
+            }
+            console.log('answerClient is on icecandidate');
+        };
+
+        localClient.onicecandidate = function (e) {
+            if (e.candidate) {
+                ws.send('user.candidate:', JSON.stringify({
+                    user_id: getUserId(),
+                    candidateType: 'offerClient',
+                    connectUserId: remoteUserId,
+                    candidate: e.candidate
+                }))
             }
             console.log('answerClient is on icecandidate');
         };
@@ -78,10 +92,10 @@
         remoteVideo.onloadedmetadata = function (e) {
             remoteVideo.play();
         };
+
         answerClient.ontrack = function (e) {
             remoteVideo.srcObject = e.streams[0];
         };
-
 
         var mediaConstraints = {
             audio: true, // We want an audio track
@@ -93,9 +107,10 @@
             localVideo.onloadedmetadata = function (e) {
                 localVideo.play();
             };
+
             localVideo.volume = 0.0;
-            console.log(localStream.getTracks());
             localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
+            localStream.getTracks().forEach(track => answerClient.addTrack(track, localStream));
         });
     }
 
@@ -122,9 +137,9 @@
                     case "user.offer":
                         const offer = msg.offer;
                         localOffer = false;
-                        console.log(offer);
                         const sessionDescription = new RTCSessionDescription(offer);
 
+                        remoteUserId = msg.connectUserId;
                         answerClient.setRemoteDescription(sessionDescription);
                         answerClient.createAnswer()
                             .then(answer => {
