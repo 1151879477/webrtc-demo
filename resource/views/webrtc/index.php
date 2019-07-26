@@ -57,10 +57,10 @@
         localClient = createPeerConnection();
         answerClient = createPeerConnection();
 
-        localClient.onicecandidate = function (e) {
-            if (!e || !e.candidate) return
-
-        };
+        // localClient.onicecandidate = function (e) {
+        //     if (!e || !e.candidate)
+        //       return
+        // };
 
         answerClient.onicecandidate = function (e) {
             if (e.candidate) {
@@ -93,6 +93,8 @@
             localVideo.onloadedmetadata = function (e) {
                 localVideo.play();
             };
+            localVideo.volume = 0.0;
+            console.log(localStream.getTracks());
             localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
         });
     }
@@ -104,7 +106,6 @@
         initWebRtc();
 
         ws.onopen = function () {
-
             setInterval(webSocketLogin, 2000);
         };
 
@@ -115,13 +116,15 @@
                     case "user.loginList":
                         $('#userList').empty();
                         msg.result.data.list.map(item => {
-                            $('#userList').append(`<li data-id="${item.id}">${item.username}</li>`)
+                            $('#userList').append(`<li><button data-id="${item.id}">${item.username}</button></li>`)
                         });
                         break;
                     case "user.offer":
                         const offer = msg.offer;
                         localOffer = false;
-                        const sessionDescription = new RTCSessionDescription(offer)
+                        console.log(offer);
+                        const sessionDescription = new RTCSessionDescription(offer);
+
                         answerClient.setRemoteDescription(sessionDescription);
                         answerClient.createAnswer()
                             .then(answer => {
@@ -173,7 +176,7 @@
     }
 
     $(function () {
-        $('#userList').on('click', 'li', function () {
+        $('#userList').on('click', 'button', function () {
             let $this = $(this);
             localOffer = true;
             remoteUserId = $this.data('id');
@@ -194,12 +197,8 @@
     function createPeerConnection() {
         var mediaConstraints = {};
         return new RTCPeerConnection({
-            iceServers: [     // Information about ICE servers - Use your own!
-                {
-                    urls: "turn://47.90.123.45:3479",
-                    username: "daiyu",
-                    credential: "adcfd1+.+"
-                }
+            iceServers: [
+              {"urls":["stun:stun.l.google.com:19302"]}
             ]
         }, mediaConstraints);
     }
