@@ -47,6 +47,7 @@
 <script src="/user.js"></script>
 <script>
 
+    let localClient = createPeerConnection();
     let url = '127.0.0.1:9000';
     var ws = new ReconnectingWebSocket('ws://' + url + "/user");
     let userId = getUserId();
@@ -115,7 +116,6 @@
 <script>
     var remoteUserId = null;
     $(function () {
-        let localClient = createPeerConnection();
 
         localClient.onicecandidate = function(e){
             if (e.candidate) {
