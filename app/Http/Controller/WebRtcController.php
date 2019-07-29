@@ -30,4 +30,12 @@ class WebRtcController
     {
         return view('webrtc/calling');
     }
+
+    /**
+     * @RequestMapping("/webrtc/called")
+     */
+    public function called()
+    {
+        return view('webrtc/called');
+    }
 }

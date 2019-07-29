@@ -53,7 +53,7 @@
     let loginIdList = [];
     let loginUserList = [];
 
-    function addAlert(userName, content, {type='success'}={}) {
+    function addAlert(userName, content, {type = 'success'} = {}) {
         $('#messageContent').append(`
         <div class="alert alert-${type} alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
@@ -74,7 +74,7 @@
         "user.mail": function (data) {
             addAlert(data.fromUser.username, data.data.content)
         },
-        "user.loginList": function(data){
+        "user.loginList": function (data) {
             data.result.data.list.map(user => {
                 routers["othUser.login"]({user: user});
             });
@@ -108,12 +108,12 @@
 </script>
 
 <script>
-    $(function(){
+    $(function () {
         let localClient = createPeerConnection();
-        $('#openIm').on('click', function(){
+        $('#openIm').on('click', function () {
             $('#imModal').modal('show');
         });
-        $('#userList').on('click', 'a', function(){
+        $('#userList').on('click', 'a', function () {
             const $this = $(this);
             const to = $this.data('id');
 
@@ -121,19 +121,27 @@
                 audio: true, // We want an audio track
                 video: true // ...and we want a video track
             };
-            navigator.mediaDevices.getUserMedia(mediaConstraints).then(localStream => {
-                let localVideo = document.getElementById("localVideo");
-                localVideo.srcObject = localStream;
-                localVideo.onloadedmetadata = function (e) {
-                    localVideo.play();
-                };
+            navigator.mediaDevices.getUserMedia(mediaConstraints)
+                .then(localStream => {
+                    let localVideo = document.getElementById("localVideo");
+                    localVideo.srcObject = localStream;
+                    localVideo.onloadedmetadata = function (e) {
+                        localVideo.play();
+                    };
 
-                localVideo.volume = 0.0;
-                localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
-                return new Promise()
-            }).then(() => {
-                console.log(233);
-            });
+                    localVideo.volume = 0.0;
+                    localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
+
+                    const offer = localClient.createOffer();
+                    localClient.setLocalDescription(offer);
+
+                    ws.send('user.mail:'+ JSON.stringify({
+                        'to' : to,
+                        'from': getUserId(),
+                        'subject': 'offer',
+                        'data' : offer
+                    }));
+                })
 
         });
     });
