@@ -54,7 +54,7 @@
     let loginIdList = [];
     let loginUserList = [];
     let localClient = createPeerConnection();
-    localClient.onicecandidate = function(e){
+    localClient.onicecandidate = function (e) {
         console.log('58', e);
         if (e.candidate) {
             console.log("remoteUserId", remoteUserId);
@@ -67,13 +67,9 @@
         }
     };
 
-    localClient.onaddstream = function(e){
-        console.log('onaddstream', e);
-    }
-
-    localClient.ontrack = e => {
+    localClient.onaddstream = function (e) {
         let remoteVideo = document.getElementById("remoteVideo");
-        remoteVideo.onloadedmetadata = function(){
+        remoteVideo.onloadedmetadata = function () {
             remoteVideo.play();
         };
 
@@ -81,13 +77,18 @@
 
         // console.log(e.streams[0]);
         // console.log(e.streams, e.streams[0].remote);
-        if(remoteVideo.srcObj !== e.streams[0]){
+        if (remoteVideo.srcObj !== e.streams[0]) {
             // e.streams[0].onaddtrack = function(e){
-                // remoteVideo.srcObj = e.streams[0]
+            // remoteVideo.srcObj = e.streams[0]
             // }
             remoteVideo.srcObj = e.streams[0]
         }
+    }
+
+    localClient.ontrack = e => {
+        console.log('on track');
     };
+
     function addAlert(userName, content, {type = 'success'} = {}) {
         $('#messageContent').append(`
         <div class="alert alert-${type} alert-dismissible" role="alert">
@@ -115,13 +116,13 @@
                         localClient.setLocalDescription(answer);
                         remoteUserId = data.fromUserId;
                         ws.send('user.mail:' + JSON.stringify({
-                            to : data.fromUserId,
+                            to: data.fromUserId,
                             from: getUserId(),
                             subject: 'answer',
                             data: answer
                         }));
                     });
-            } else if(data.subject === 'icecandidate') {
+            } else if (data.subject === 'icecandidate') {
                 localClient.addIceCandidate(new RTCIceCandidate(data.data));
             }
         },
