@@ -42,5 +42,9 @@
         wsLogin(userId, ws);
     }
 
+    ws.onmessage = function(e){
+        console.log(e.data);
+    }
+
 </script>
 </html>
