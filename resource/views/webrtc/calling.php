@@ -138,7 +138,7 @@
             navigator.mediaDevices.getUserMedia(mediaConstraints)
                 .then( async localStream => {
                     let localVideo = document.getElementById("localVideo");
-                    localVideo.srcObject = localStream;
+                    // localVideo.srcObject = localStream;
                     localVideo.onloadedmetadata = function (e) {
                         localVideo.play();
                     };
