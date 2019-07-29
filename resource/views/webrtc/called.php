@@ -77,7 +77,6 @@
     };
 
     localClient.ontrack = e => {
-        console.log('on track');
         let remoteVideo = document.getElementById("remoteVideo");
     };
 
