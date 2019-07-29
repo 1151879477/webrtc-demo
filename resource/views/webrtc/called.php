@@ -70,7 +70,7 @@
     let remoteVideo = document.getElementById("remoteVideo");
     localClient.oniceconnectionstatechange = function(e){
         console.log(localClient.iceConnectionState);
-        if(localClient.iceConnectionState === 'connected'){
+        if(localClient.iceConnectionState === 'connected') {
             remoteVideo.play();
         }
     }
