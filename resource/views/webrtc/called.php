@@ -67,6 +67,9 @@
         }
     };
 
+    localClient.onaddstream = function(e){
+        console.log(e);
+    }
 
     localClient.ontrack = e => {
         let remoteVideo = document.getElementById("remoteVideo");
