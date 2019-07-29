@@ -168,7 +168,7 @@
                     };
 
                     localVideo.volume = 0.0;
-                    localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
+                    // localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
 
                     const offer = localClient.createOffer();
                     localClient.setLocalDescription(offer);
