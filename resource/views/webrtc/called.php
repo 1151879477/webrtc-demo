@@ -76,7 +76,8 @@
 
         console.log('on track');
 
-        console.log(e.streams[0]);
+        // console.log(e.streams[0]);
+        console.log(e.streams.remote);
         if(remoteVideo.srcObj !== e.streams[0]){
             remoteVideo.srcObj = e.streams[0]
         }
