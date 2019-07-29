@@ -40,7 +40,6 @@ class UserController
         $userDao = new UserDao();
         $user = $userDao->getUserById($userId);
 
-        broadcast(23323);
         server()->broadcast(json_encode([
             'type' => 'othUser.login',
             'user' => $user
