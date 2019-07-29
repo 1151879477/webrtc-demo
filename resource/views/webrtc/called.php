@@ -79,8 +79,8 @@
         remoteVideo.srcObj = e.stream
     };
 
-    localClient.ontrack = e => {
-        let remoteVideo = document.getElementById("remoteVideo");
+    localClient.addtrack = e => {
+        console.log(e);
     };
 
     function addAlert(userName, content, {type = 'success'} = {}) {
