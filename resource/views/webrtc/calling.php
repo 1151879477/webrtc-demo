@@ -114,9 +114,8 @@
 
         localClient.onicecandidate = function(e){
             if (e.candidate) {
-                console.log("localClient.onicecandidate ");
-                console.log(e);
-                ws.send('user.email:' + JSON.stringify({
+                console.log("wx send localClient.onicecandidate ");
+                ws.send('user.mail:' + JSON.stringify({
                     to: remoteUserId,
                     from: getUserId(),
                     subject: 'icecandidate',
