@@ -88,6 +88,7 @@
     };
 
     ws.onmessage = function (e) {
+        console.log('on message');
         let message = {};
         try {
             message = JSON.parse(e.data)
