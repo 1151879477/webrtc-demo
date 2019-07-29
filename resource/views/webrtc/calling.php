@@ -32,7 +32,7 @@
 
     </div>
     <div class="col-md-3">
-        <button class="btn btn-primary" onclick="$('ImModel').modal('show');">Im</button>
+        <button class="btn btn-primary" id="openIm">Im</button>
     </div>
     <div class="col-md-3">
     </div>
@@ -120,5 +120,13 @@
     };
 
 
+</script>
+
+<script>
+    $(function(){
+        $('#openIm').on('click', function(){
+            $('#ImModal').modal('show');
+        });
+    });
 </script>
 </html>
