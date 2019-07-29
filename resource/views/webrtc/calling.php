@@ -5,6 +5,7 @@
 </head>
 <body>
 <div class="row">
+    <div class="col-md-9"></div>
     <div class="col-md-3">
         <div class="list-group">
             <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
