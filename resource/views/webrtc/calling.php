@@ -112,7 +112,18 @@
             $('#ImModal').modal('show');
         });
         $('#userList').on('click', 'a', function(){
-            console.log($(this).data('id'));
+            const $this = $(this);
+            const to = $this.data('id');
+
+            ws.send('user.mail:' + JSON.stringify({
+                to: to,
+                from: getUserId(),
+                subject: "",
+                data: {
+                    content: 'hello'
+                }
+            }));
+
         });
     });
 </script>
