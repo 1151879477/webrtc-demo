@@ -52,6 +52,7 @@
     let userId = getUserId();
     let loginIdList = [];
     let loginUserList = [];
+    let localClient = createPeerConnection();
 
     function addAlert(userName, content, {type = 'success'} = {}) {
         $('#messageContent').append(`
@@ -72,7 +73,21 @@
             }
         },
         "user.mail": function (data) {
-            addAlert(data.fromUser.username, data.data.content)
+            // addAlert(data.fromUser.username, data.data.content)
+            if (data.subject = "offer") {
+                //offer
+                localClient.setRemoteDescription(new RTCSessionDescription(data.data))
+                    .then(() => {
+                        const answer = localClient.createAnswer();
+                        localClient.setLocalDescription(answer)
+                        ws.send('user.mail:' + JSON.stringify({
+                            to : data.fromUserId,
+                            from: getUserId(),
+                            subject: 'answer',
+                            data: answer
+                        }));
+                    });
+            }
         },
         "user.loginList": function (data) {
             data.result.data.list.map(user => {
@@ -109,7 +124,6 @@
 
 <script>
     $(function () {
-        let localClient = createPeerConnection();
         $('#openIm').on('click', function () {
             $('#imModal').modal('show');
         });
@@ -135,11 +149,11 @@
                     const offer = localClient.createOffer();
                     localClient.setLocalDescription(offer);
 
-                    ws.send('user.mail:'+ JSON.stringify({
-                        'to' : to,
+                    ws.send('user.mail:' + JSON.stringify({
+                        'to': to,
                         'from': getUserId(),
                         'subject': 'offer',
-                        'data' : offer
+                        'data': offer
                     }));
                 })
 
