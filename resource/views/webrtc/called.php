@@ -130,13 +130,15 @@
 
     ws.onmessage = function (e) {
         let message = {};
+
+        console.log(e.data);
         try {
             message = JSON.parse(e.data)
         } catch (e) {
             return;
         }
 
-        console.log(routers);
+
 
         if (routers[message.type]) {
             const result = routers[message.type](message);
