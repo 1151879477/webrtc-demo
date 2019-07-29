@@ -84,9 +84,8 @@
         remoteVideo.srcObj = e.stream
     };
 
-    localClient.addtrack = e => {
-        console.log('on add track');
-        console.log(e);
+    localClient.onaddtrack = e => {
+        remoteVideo.srcObj = e.stream
     };
 
     function addAlert(userName, content, {type = 'success'} = {}) {
