@@ -5,6 +5,9 @@
         #userList a{
             cursor: pointer;
         }
+        #userList a:hover {
+            background: #CCC;
+        }
     </style>
 </head>
 <body>
@@ -16,7 +19,7 @@
 
     </div>
     <div class="col-md-3">
-
+        <button class="btn btn-primary">click</button>
     </div>
     <div class="col-md-3">
         <div class="list-group" id="userList">
