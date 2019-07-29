@@ -112,7 +112,7 @@
     $(function () {
         let localClient = createPeerConnection();
 
-        localClient.onicecandidate = function(e){
+        localClient.onicecandidate = function (e) {
             if (e.candidate) {
                 ws.send('user.email:' + JSON.stringify({
                     to: remoteUserId,
@@ -145,15 +145,15 @@
                     localVideo.volume = 0.0;
                     localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
 
-                    const offer = localClient.createOffer();
-                    localClient.setLocalDescription(offer);
-
-                    ws.send('user.mail:'+ JSON.stringify({
-                        'to' : to,
-                        'from': getUserId(),
-                        'subject': 'offer',
-                        'data' : offer
-                    }));
+                    localClient.createOffer().then(offer => {
+                        localClient.setLocalDescription(offer);
+                        ws.send('user.mail:' + JSON.stringify({
+                            'to': to,
+                            'from': getUserId(),
+                            'subject': 'offer',
+                            'data': offer
+                        }));
+                    });
                 })
 
         });
