@@ -50,10 +50,31 @@
     let url = '127.0.0.1:9000';
     var ws = new ReconnectingWebSocket('ws://' + url + "/user");
     let userId = getUserId();
+    let remoteUserId = null;
     let loginIdList = [];
     let loginUserList = [];
     let localClient = createPeerConnection();
+    localClient.onicecandidate(function(e){
+        if (e.candidate) {
+            ws.send('user.email:' + JSON.stringify({
+                to: remoteUserId,
+                from: getUserId(),
+                subject: 'icecandidate',
+                data: e.candidate
+            }));
+        }
+    });
 
+    localClient.ontrack(e => {
+        console.log(e);
+        let remoteVideo = document.getElementById("remoteVideo");
+        // localVideo.srcObject = e.st;
+        // localVideo.onloadedmetadata = function (e) {
+        //     localVideo.play();
+        // };
+        //
+        // localVideo.volume = 0.0;
+    });
     function addAlert(userName, content, {type = 'success'} = {}) {
         $('#messageContent').append(`
         <div class="alert alert-${type} alert-dismissible" role="alert">
@@ -73,13 +94,13 @@
             }
         },
         "user.mail": function (data) {
-            // addAlert(data.fromUser.username, data.data.content)
-            if (data.subject = "offer") {
+            if (data.subject === "offer") {
                 //offer
                 localClient.setRemoteDescription(new RTCSessionDescription(data.data))
                     .then(() => {
                         const answer = localClient.createAnswer();
-                        localClient.setLocalDescription(answer)
+                        localClient.setLocalDescription(answer);
+                        remoteUserId = data.fromUserId;
                         ws.send('user.mail:' + JSON.stringify({
                             to : data.fromUserId,
                             from: getUserId(),
@@ -87,6 +108,8 @@
                             data: answer
                         }));
                     });
+            } else if(data.subject === 'icecandidate') {
+                localClient.addIceCandidate(data.data);
             }
         },
         "user.loginList": function (data) {

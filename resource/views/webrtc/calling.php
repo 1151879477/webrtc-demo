@@ -108,8 +108,20 @@
 </script>
 
 <script>
+    var remoteUserId = null;
     $(function () {
         let localClient = createPeerConnection();
+
+        localClient.onicecandidate(function(e){
+            if (e.candidate) {
+                ws.send('user.email:' + JSON.stringify({
+                    to: remoteUserId,
+                    from: getUserId(),
+                    subject: 'icecandidate',
+                    data: e.candidate
+                }));
+            }
+        });
         $('#openIm').on('click', function () {
             $('#imModal').modal('show');
         });
@@ -117,6 +129,7 @@
             const $this = $(this);
             const to = $this.data('id');
 
+            remoteUserId = to;
             var mediaConstraints = {
                 audio: true, // We want an audio track
                 video: true // ...and we want a video track
