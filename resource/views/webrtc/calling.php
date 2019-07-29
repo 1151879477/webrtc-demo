@@ -95,7 +95,6 @@
             return;
         }
 
-        console.log(message);
 
         if (routers[message.type]) {
             const result = routers[message.type](message);
