@@ -70,8 +70,6 @@
                     connectUserId: remoteUserId,
                     candidate: e.candidate
                 }))
-
-
             }
             console.log('answerClient is on icecandidate');
         };

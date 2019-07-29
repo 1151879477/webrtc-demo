@@ -126,4 +126,34 @@ class UserController
         ];
         server()->sendTo($connectUserFd, json_encode($sendData));
     }
+
+
+    /**
+     * @param $data
+     * @MessageMapping()
+     */
+    public function userToUser($data)
+    {
+        $requestData = json_decode($data, true);
+        $toUserId = $requestData['to'];
+        $fromUserId = $requestData['from'];
+        $subject = $requestData['subject'];
+        $data = $requestData['data'];
+        $time = time();
+
+        $userDao = new UserDao();
+        $toUserFd = $userDao->getUserFdByUserId($toUserId);
+        if(!$toUserFd){
+            return;
+        }
+
+        $sendData = [
+            'subject' => $subject,
+            'fromUserId' => $fromUserId,
+            'data' => $data,
+            'time' => $time
+        ];
+
+        server()->sendTo($toUserFd, json_encode($sendData, 256));
+    }
 }

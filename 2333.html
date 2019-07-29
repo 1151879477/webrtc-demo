@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #i::-webkit-input-placeholder::after{
+            content: '*';
+            /*display: inline-block;*/
+            color: #F00;
+            visibility: visible;
+            font-size: 14px;
+        }
+
+        #d:after{
+            content: '*';
+            /*display: inline-block;*/
+            color: #F00;
+            visibility: visible;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" placeholder="请输入这个字" id="i">
+<div id="d">
+    qeqwe
+</div>
+
+</body>
+</html>
