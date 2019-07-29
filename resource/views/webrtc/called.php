@@ -79,8 +79,8 @@
         // console.log(e.streams[0]);
         // console.log(e.streams, e.streams[0].remote);
         if(remoteVideo.srcObj !== e.streams[0]){
-            e.streams[0].onaddtrack = function(){
-                console.log(233);
+            e.streams[0].onaddtrack = function(e){
+                console.log(e);
             }
             // remoteVideo.srcObj = e.streams[0]
         }
