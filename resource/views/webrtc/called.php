@@ -70,8 +70,9 @@
         if(localClient.iceConnectionState === 'connected') {
             let remoteVideo = document.getElementById("remoteVideo");
             console.log(remoteVideo);
-            let tracks = localClient.getTracks()
-            console.log(tracks);
+            console.log(localClient);
+            // let tracks = localClient.getTracks()
+            // console.log(tracks);
         }
     }
 
