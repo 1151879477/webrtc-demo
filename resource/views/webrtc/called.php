@@ -96,7 +96,7 @@
             }
         },
         "user.mail": function (data) {
-            console.log('user.mail', data);
+            console.log("user.mail", data)
             if (data.subject === "offer") {
                 //offer
                 localClient.setRemoteDescription(new RTCSessionDescription(data.data))
@@ -112,7 +112,6 @@
                         }));
                     });
             } else if(data.subject === 'icecandidate') {
-                console.log(data.data);
                 localClient.addIceCandidate(data.data);
             }
         },
