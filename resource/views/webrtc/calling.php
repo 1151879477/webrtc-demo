@@ -6,10 +6,17 @@
             cursor: pointer;
         }
 
+        #messageBox {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
     </style>
 </head>
 <body>
-<div class="row">
+<div class="row" id="messageBox">
     <div class="col-md-12">
         <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
