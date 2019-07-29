@@ -129,13 +129,14 @@
     };
 
     ws.onmessage = function (e) {
-        console.log('on message')
         let message = {};
         try {
             message = JSON.parse(e.data)
         } catch (e) {
             return;
         }
+
+        console.log(routers);
 
         if (routers[message.type]) {
             const result = routers[message.type](message);
