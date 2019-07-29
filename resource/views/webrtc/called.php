@@ -112,7 +112,7 @@
                         }));
                     });
             } else if(data.subject === 'icecandidate') {
-                localClient.addIceCandidate(data.data);
+                localClient.addIceCandidate(new RTCIceCandidate(data.data));
             }
         },
         "user.loginList": function (data) {
