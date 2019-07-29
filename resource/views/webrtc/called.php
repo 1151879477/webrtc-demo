@@ -67,7 +67,7 @@
         }
     };
 
-    localClient.iceconnectionstatechange = function(e){
+    localClient.oniceconnectionstatechange = function(e){
         console.log(e);
     }
 
