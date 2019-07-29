@@ -43,7 +43,7 @@ class UserController
         server()->broadcast(json_encode([
             'type' => 'othUser.login',
             'user' => $user
-        ]));
+        ]), [], [$fd]);
 
         return [
             'result' => [
