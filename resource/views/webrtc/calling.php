@@ -41,6 +41,7 @@
     ws.onopen = function(){
         console.log('on open');
         ws.send(456);
+        console.log(ws.readyState);
         // wsLogin(userId, ws);
     }
 
