@@ -47,7 +47,6 @@
     };
 
     ws.onmessage = function (e) {
-        console.log(e.data);
         let message = {};
         try {
             message = JSON.parse(e.data)
@@ -55,6 +54,7 @@
             return;
         }
         if (routers[e.type]) {
+            console.log(e.type);
             const result = routers[e.type](message);
             if (result) {
                 ws.send(JSON.stringify(result))
