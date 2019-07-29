@@ -88,7 +88,6 @@
     };
 
     ws.onmessage = function (e) {
-        console.log(e);
         let message = {};
         try {
             message = JSON.parse(e.data)
@@ -96,6 +95,7 @@
             return;
         }
 
+        console.log(message);
 
         if (routers[message.type]) {
             const result = routers[message.type](message);
