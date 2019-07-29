@@ -38,7 +38,7 @@
 
     let routers = {
         "othUser.login": function (data) {
-            console.log(data);
+            console.log('router console', data);
         }
     };
     ws.onopen = function () {
@@ -48,16 +48,17 @@
 
     ws.onmessage = function (e) {
         console.log(e.data);
+        let message = {};
         try {
-            const message = JSON.parse(e.data)
-            if (routers[e.type]) {
-                const result = routers[e.type](message);
-                if (result) {
-                    ws.send(JSON.stringify(result))
-                }
+            message = JSON.parse(e.data)
+        } catch (e) {
+            return;
+        }
+        if (routers[e.type]) {
+            const result = routers[e.type](message);
+            if (result) {
+                ws.send(JSON.stringify(result))
             }
-        } catch(e){
-            console.log(e);
         }
     };
 
