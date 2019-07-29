@@ -127,7 +127,7 @@
 <script>
     $(function(){
         $('#openIm').on('click', function(){
-            $('#ImModal').modal('show');
+            $('#imModal').modal('show');
         });
         $('#userList').on('click', 'a', function(){
             const $this = $(this);
