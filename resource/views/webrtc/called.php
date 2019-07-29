@@ -54,7 +54,7 @@
     let loginIdList = [];
     let loginUserList = [];
     let localClient = createPeerConnection();
-    localClient.onicecandidate(function(e){
+    localClient.onicecandidate = function(e){
         if (e.candidate) {
             ws.send('user.email:' + JSON.stringify({
                 to: remoteUserId,
@@ -63,7 +63,7 @@
                 data: e.candidate
             }));
         }
-    });
+    };
 
     localClient.ontrack(e => {
         console.log(e);
