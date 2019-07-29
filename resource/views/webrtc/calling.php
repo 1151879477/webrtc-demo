@@ -39,6 +39,7 @@
 
     ws.onopen = function(){
         console.log('on open');
+        ws.send(443);
     }
 
 </script>
