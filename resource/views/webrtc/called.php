@@ -81,7 +81,7 @@
         remoteVideo.play();
     };
 
-    remoteVideo.ontrack = function(e){
+    localClient.ontrack = function(e){
         console.log(' on track ', e);
     }
 
