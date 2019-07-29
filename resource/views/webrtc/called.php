@@ -67,6 +67,10 @@
         }
     };
 
+    localClient.iceconnectionstatechange = function(e){
+        console.log(e);
+    }
+
     let remoteVideo = document.getElementById("remoteVideo");
 
     remoteVideo.onloadedmetadata = function(){
