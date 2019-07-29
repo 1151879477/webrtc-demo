@@ -74,7 +74,9 @@
             addAlert(data.fromUser.username, data.data.content)
         },
         "user.loginList": function(data){
-            console.log(data);
+            data.result.data.list.map(user => {
+                routers["othUser.login"]({user: user});
+            });
         }
     };
 
@@ -82,6 +84,7 @@
         //登录
         wsLogin(userId, ws);
         ws.send('user.loginList:' + JSON.stringify({user_id: getUserId()}))
+
     };
 
     ws.onmessage = function (e) {
