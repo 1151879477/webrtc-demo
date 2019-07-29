@@ -109,7 +109,7 @@
 
 <script>
     $(function(){
-        let localStream = createPeerConnection();
+        let localClient = createPeerConnection();
         $('#openIm').on('click', function(){
             $('#imModal').modal('show');
         });
@@ -130,7 +130,7 @@
 
                 localVideo.volume = 0.0;
                 localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
-                localStream.getTracks().forEach(track => answerClient.addTrack(track, localStream));
+                return new Promise()
             }).then(() => {
                 console.log(233);
             });
