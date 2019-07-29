@@ -130,6 +130,7 @@
     };
 
     ws.onmessage = function (e) {
+        console.log(e);
         let message = {};
         try {
             message = JSON.parse(e.data)
