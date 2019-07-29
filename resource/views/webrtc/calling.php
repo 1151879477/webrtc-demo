@@ -6,7 +6,7 @@
             cursor: pointer;
         }
         #userList a:hover {
-            background: #CCC;
+            background: #007bff;
         }
     </style>
 </head>
