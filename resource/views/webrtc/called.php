@@ -68,7 +68,7 @@
     };
 
     localClient.onaddstream = function(e){
-        console.log(e);
+        console.log('onaddstream', e);
     }
 
     localClient.ontrack = e => {
