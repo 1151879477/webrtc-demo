@@ -36,7 +36,8 @@
     var ws = new ReconnectingWebSocket('ws://' + url + "/user");
     ws.open();
     let userId = getUserId();
-
+    //登录
+    wsLogin(userId, ws);
 
 </script>
 </html>

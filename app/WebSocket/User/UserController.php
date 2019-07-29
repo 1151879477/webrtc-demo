@@ -37,6 +37,14 @@ class UserController
         Redis::hSet('rt-user-fd', 'user-id-' . $userId, $fd);
         Redis::hSet('rt-user-id', 'user-fd-' . $fd, $userId);
 
+        $userDao = new UserDao();
+        $user = $userDao->getUserById($userId);
+
+        server()->broadcast(json_encode([
+            'type' => 'othUser.login',
+            'user' => $user
+        ]));
+
         return [
             'result' => [
                 'code' => 0,
