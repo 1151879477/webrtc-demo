@@ -68,12 +68,7 @@
     let remoteVideo = document.getElementById("remoteVideo");
     localClient.oniceconnectionstatechange = function(e){
         if(localClient.iceConnectionState === 'connected') {
-            navigator.mediaDevices.getUserMedia(mediaConstraints)
-                .then(localStream => {
-                    localStream.getTracks().map(t =>{
-                        localClient.addTrack(t, localStream)
-                    })
-                })
+
         }
     };
 
