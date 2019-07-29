@@ -67,20 +67,18 @@
         }
     };
 
+    let remoteVideo = document.getElementById("remoteVideo");
+
+    remoteVideo.onloadedmetadata = function(){
+        remoteVideo.play();
+    }
     localClient.onaddstream = function (e) {
-        let remoteVideo = document.getElementById("remoteVideo");
         remoteVideo.srcObj = e.stream
     };
 
     localClient.ontrack = e => {
         console.log('on track');
         let remoteVideo = document.getElementById("remoteVideo");
-        if (remoteVideo.srcObj !== e.streams[0]) {
-            // e.streams[0].onaddtrack = function(e){
-            // remoteVideo.srcObj = e.streams[0]
-            // }
-            remoteVideo.srcObj = e.streams[0]
-        }
     };
 
     function addAlert(userName, content, {type = 'success'} = {}) {
