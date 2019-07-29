@@ -96,7 +96,6 @@
             }
         },
         "user.mail": function (data) {
-            console.log("user.mail", data)
             if (data.subject === "offer") {
                 //offer
                 localClient.setRemoteDescription(new RTCSessionDescription(data.data))
@@ -131,14 +130,11 @@
     ws.onmessage = function (e) {
         let message = {};
 
-        console.log(456);
         try {
             message = JSON.parse(e.data)
         } catch (e) {
             return;
         }
-
-
 
         if (routers[message.type]) {
             const result = routers[message.type](message);
