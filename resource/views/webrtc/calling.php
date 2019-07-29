@@ -130,7 +130,7 @@
 
         localClient.ontrack = function(e){
             console.log(e);
-        }
+        };
         $('#openIm').on('click', function () {
             $('#imModal').modal('show');
         });
