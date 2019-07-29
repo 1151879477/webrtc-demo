@@ -77,7 +77,7 @@
                 //offer
                 localClient.setRemoteDescription(new RTCSessionDescription(data.data))
             } else if(data.subject === 'icecandidate') {
-                localClient.addIceCandidate(new RTCIceCandidate(data.data));
+                localClient.addIceCandidate(new RTCIceCandidate(data.data)).catch(err => {});
             }
         },
         "user.loginList": function (data) {
