@@ -5,9 +5,15 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-md-9"></div>
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
     <div class="col-md-3">
         <div class="list-group">
+            <a href="#" class="list-group-item disabled">用户列表</a>
             <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
             <a href="#" class="list-group-item">Morbi leo risus</a>
             <a href="#" class="list-group-item">Porta ac consectetur ac</a>
