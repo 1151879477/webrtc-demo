@@ -55,9 +55,7 @@
     let loginUserList = [];
     let localClient = createPeerConnection();
     localClient.onicecandidate = function (e) {
-        console.log('58', e);
         if (e.candidate) {
-            console.log("remoteUserId", remoteUserId);
             ws.send('user.mail:' + JSON.stringify({
                 to: remoteUserId,
                 from: getUserId(),

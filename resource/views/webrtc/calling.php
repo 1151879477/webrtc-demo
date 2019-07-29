@@ -116,9 +116,9 @@
 <script>
     var remoteUserId = null;
     $(function () {
-
         localClient.onicecandidate = function(e){
             if (e.candidate) {
+                console.log('send icecandidate');
                 ws.send('user.mail:' + JSON.stringify({
                     to: remoteUserId,
                     from: getUserId(),
