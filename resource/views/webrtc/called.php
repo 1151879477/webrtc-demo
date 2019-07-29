@@ -126,7 +126,6 @@
         //登录
         wsLogin(userId, ws);
         ws.send('user.loginList:' + JSON.stringify({user_id: getUserId()}))
-        console.log('open');
     };
 
     ws.onmessage = function (e) {
