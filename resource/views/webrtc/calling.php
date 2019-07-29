@@ -37,7 +37,10 @@
     ws.open();
     let userId = getUserId();
     //登录
-    wsLogin(userId, ws);
+
+    ws.onopen = function(){
+        wsLogin(userId, ws);
+    }
 
 </script>
 </html>
