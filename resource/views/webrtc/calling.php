@@ -53,6 +53,7 @@
         } catch (e) {
             return;
         }
+        console.log(routers);
         if (routers[e.type]) {
             console.log(e.type);
             const result = routers[e.type](message);
