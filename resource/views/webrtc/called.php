@@ -28,7 +28,7 @@
         <video src="" id="localVideo"></video>
     </div>
     <div class="col-md-3">
-        <video src="" id="remoteVideo"></video>
+        <video src="" id="remoteVideo" controls="controls"></video>
     </div>
     <div class="col-md-3">
     </div>
