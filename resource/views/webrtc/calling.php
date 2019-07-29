@@ -34,16 +34,11 @@
 <script>
     let url = '127.0.0.1:9000';
     var ws = new ReconnectingWebSocket('ws://' + url + "/user");
-    ws.open();
     let userId = getUserId();
     //登录
 
     ws.onopen = function(){
         console.log('on open');
-        if(ws.readyState == 1){
-            ws.send(4656);
-        }
-        // wsLogin(userId, ws);
     }
 
 </script>
