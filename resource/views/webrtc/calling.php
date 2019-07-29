@@ -5,9 +5,7 @@
         #userList a{
             cursor: pointer;
         }
-        #userList a:hover {
-            background: #007bff;
-        }
+
     </style>
 </head>
 <body>
@@ -44,7 +42,7 @@
         "othUser.login": function (data) {
             console.log('router console', data);
             if(!loginList.includes(data.user.id)){
-                $('#userList').append(`<a href="#" class="list-group-item disabled" data-id="${data.user.id}">${data.user.username}</a>`);
+                $('#userList').append(`<a href="#" class="list-group-item" data-id="${data.user.id}">${data.user.username}</a>`);
                 loginList.push(data.user.id);
             }
         }
