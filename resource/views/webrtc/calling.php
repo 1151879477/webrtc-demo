@@ -39,7 +39,8 @@
     //登录
 
     ws.onopen = function(){
-        wsLogin(userId, ws);
+        console.log('on open');
+        // wsLogin(userId, ws);
     }
 
 </script>
