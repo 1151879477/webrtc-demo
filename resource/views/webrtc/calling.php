@@ -15,12 +15,8 @@
 
     </div>
     <div class="col-md-3">
-        <div class="list-group">
+        <div class="list-group" id="userList">
             <a href="#" class="list-group-item disabled">用户列表</a>
-            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item">Morbi leo risus</a>
-            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item">Vestibulum at eros</a>
         </div>
     </div>
 </div>
@@ -35,10 +31,15 @@
     let url = '127.0.0.1:9000';
     var ws = new ReconnectingWebSocket('ws://' + url + "/user");
     let userId = getUserId();
+    let loginList = [];
 
     let routers = {
         "othUser.login": function (data) {
             console.log('router console', data);
+            if(!loginList.includes(data.user.id)){
+                $('#userList').append(`<a href="#" class="list-group-item disabled" data-id="${data.user.id}">${data.user.username}</a>`);
+                loginList.push(data.user.id);
+            }
         }
     };
     ws.onopen = function () {
