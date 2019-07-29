@@ -114,6 +114,7 @@
 
         localClient.onicecandidate = function(e){
             console.log("localClient.onicecandidate ");
+            console.log(remoteUserId);
             if (e.candidate) {
                 ws.send('user.email:' + JSON.stringify({
                     to: remoteUserId,
