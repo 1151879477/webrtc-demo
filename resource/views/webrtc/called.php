@@ -78,16 +78,10 @@
         console.log('start play');
         remoteVideo.play();
     };
-    //addIceCandidate
-    localClient.onaddstream = function (e) {
-        console.log('on add strream', e.stream);
-        remoteVideo.srcObj = e.stream
-    };
 
-    localClient.onaddtrack = e => {
-        console.log('on add track');
-        remoteVideo.srcObj = e.stream
-    };
+    remoteVideo.ontrack = function(e){
+        console.log(' on track ', e);
+    }
 
     function addAlert(userName, content, {type = 'success'} = {}) {
         $('#messageContent').append(`
