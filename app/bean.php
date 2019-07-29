@@ -16,6 +16,10 @@ use Swoft\Server\SwooleEvent;
 use Swoft\Db\Database;
 use Swoft\Redis\RedisDb;
 
+
+echo __DIR__."/public";
+echo 23333333;
+die();
 return [
     'logger'           => [
         'flushRequest' => false,
