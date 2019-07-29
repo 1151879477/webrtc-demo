@@ -85,6 +85,7 @@
     };
 
     localClient.onaddtrack = e => {
+        console.log('on add track');
         remoteVideo.srcObj = e.stream
     };
 
