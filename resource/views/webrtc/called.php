@@ -112,7 +112,6 @@
                         }));
                     });
             } else if(data.subject === 'icecandidate') {
-                console.log(data.data);
                 localClient.addIceCandidate(new RTCIceCandidate(data.data));
             }
         },
