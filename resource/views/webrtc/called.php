@@ -80,6 +80,7 @@
     };
 
     localClient.addtrack = e => {
+        console.log('on add track');
         console.log(e);
     };
 
