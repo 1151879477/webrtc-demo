@@ -80,9 +80,8 @@
         // console.log(e.streams, e.streams[0].remote);
         if(remoteVideo.srcObj !== e.streams[0]){
             e.streams[0].onaddtrack = function(e){
-                console.log(e);
+                remoteVideo.srcObj = e.streams[0]
             }
-            // remoteVideo.srcObj = e.streams[0]
         }
     };
     function addAlert(userName, content, {type = 'success'} = {}) {
