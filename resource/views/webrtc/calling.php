@@ -1,7 +1,11 @@
 <html>
 <head>
-    <style></style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        #userList a{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div class="row">
