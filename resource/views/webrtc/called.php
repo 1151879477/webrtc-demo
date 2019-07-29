@@ -70,8 +70,10 @@
     let remoteVideo = document.getElementById("remoteVideo");
 
     remoteVideo.onloadedmetadata = function(){
+        console.log('start play');
         remoteVideo.play();
-    }
+    };
+
     localClient.onaddstream = function (e) {
         remoteVideo.srcObj = e.stream
     };
