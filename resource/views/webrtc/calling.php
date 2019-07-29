@@ -92,8 +92,7 @@
                 loginIdList.push(data.user.id);
                 loginUserList.push(data.user);
             }
-        }
-
+        },
         "user.mail": function (data) {
             addAlert(data.fromUser.username, data.data.content)
         }
