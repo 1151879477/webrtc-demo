@@ -54,10 +54,9 @@
             return;
         }
 
-        console.log(routers[e.type]);
-        if (routers[e.type]) {
-            console.log(e.type);
-            const result = routers[e.type](message);
+
+        if (routers[message.type]) {
+            const result = routers[message.type](message);
             if (result) {
                 ws.send(JSON.stringify(result))
             }
