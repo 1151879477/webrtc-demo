@@ -75,6 +75,7 @@
             remoteVideo.play();
         };
 
+        console.log(e.streams[0]);
         if(remoteVideo.srcObj !== e.streams[0]){
             remoteVideo.srcObj = e.streams[0]
         }
