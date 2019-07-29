@@ -112,7 +112,7 @@
     $(function () {
         let localClient = createPeerConnection();
 
-        localClient.onicecandidate = function (e) {
+        localClient.onicecandidate = function(e){
             if (e.candidate) {
                 ws.send('user.email:' + JSON.stringify({
                     to: remoteUserId,
@@ -135,7 +135,7 @@
                 video: true // ...and we want a video track
             };
             navigator.mediaDevices.getUserMedia(mediaConstraints)
-                .then(localStream => {
+                .then( async localStream => {
                     let localVideo = document.getElementById("localVideo");
                     localVideo.srcObject = localStream;
                     localVideo.onloadedmetadata = function (e) {
@@ -145,15 +145,14 @@
                     localVideo.volume = 0.0;
                     localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
 
-                    localClient.createOffer().then(offer => {
-                        localClient.setLocalDescription(offer);
-                        ws.send('user.mail:' + JSON.stringify({
-                            'to': to,
-                            'from': getUserId(),
-                            'subject': 'offer',
-                            'data': offer
-                        }));
-                    });
+                    const offer = await localClient.createOffer();
+                    localClient.setLocalDescription(offer);
+                    ws.send('user.mail:'+ JSON.stringify({
+                        'to' : to,
+                        'from': getUserId(),
+                        'subject': 'offer',
+                        'data' : offer
+                    }));
                 })
 
         });

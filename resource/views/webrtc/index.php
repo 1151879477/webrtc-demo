@@ -57,7 +57,10 @@
         localClient = createPeerConnection();
         answerClient = createPeerConnection();
 
-
+        // localClient.onicecandidate = function (e) {
+        //     if (!e || !e.candidate)
+        //       return
+        // };
 
         answerClient.onicecandidate = function (e) {
             if (e.candidate) {

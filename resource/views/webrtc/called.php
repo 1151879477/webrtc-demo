@@ -97,8 +97,8 @@
             if (data.subject === "offer") {
                 //offer
                 localClient.setRemoteDescription(new RTCSessionDescription(data.data))
-                    .then(() => {
-                        const answer = localClient.createAnswer();
+                    .then(async () => {
+                        const answer = await localClient.createAnswer();
                         localClient.setLocalDescription(answer);
                         remoteUserId = data.fromUserId;
                         ws.send('user.mail:' + JSON.stringify({
