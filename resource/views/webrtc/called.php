@@ -68,17 +68,23 @@
     let remoteVideo = document.getElementById("remoteVideo");
     localClient.oniceconnectionstatechange = function(e){
         if(localClient.iceConnectionState === 'connected') {
+            navigator.mediaDevices.getUserMedia(mediaConstraints)
+                .then(localStream => {
+                    localStream.getTracks().map(t =>{
+                        localClient.addTrack(t, localStream)
+                    })
+                })
         }
-    }
+    };
 
     remoteVideo.onloadedmetadata = function(){
-        console.log('start play');
-        // remoteVideo.play();
+        remoteVideo.play();
     };
 
     localClient.ontrack = function(e){
-        console.log(' on track ', e);
-        remoteVideo.srcObject = e.streams[0]
+        if(remoteVideo.srcObject !== e.streams[0]){
+            remoteVideo.srcObject = e.streams[0]
+        }
     };
 
     function addAlert(userName, content, {type = 'success'} = {}) {
