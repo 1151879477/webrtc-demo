@@ -17,9 +17,6 @@ use Swoft\Db\Database;
 use Swoft\Redis\RedisDb;
 
 
-echo __DIR__."/public";
-echo 23333333;
-die();
 return [
     'logger'           => [
         'flushRequest' => false,
@@ -46,7 +43,7 @@ return [
             'task_enable_coroutine' => true,
             'enable_static_handler'    => true,
             // swoole v4.4.0以下版本, 此处必须为绝对路径
-            'document_root'            => dirname(__DIR__) . '/public',
+            'document_root'            => dirname(__DIR__) . '/../public',
         ]
     ],
     'httpDispatcher'   => [
