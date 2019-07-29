@@ -11,8 +11,7 @@
 <script>
     let url = '127.0.0.1:9000';
     var ws = new ReconnectingWebSocket('ws://' + url + "/user");
-    ws.open(function(){
-        console.log('is open');
-    })
+
+    ws.open();
 </script>
 </html>
