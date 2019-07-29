@@ -68,11 +68,6 @@
     let remoteVideo = document.getElementById("remoteVideo");
     localClient.oniceconnectionstatechange = function(e){
         if(localClient.iceConnectionState === 'connected') {
-            let remoteVideo = document.getElementById("remoteVideo");
-            console.log(remoteVideo);
-            console.log(localClient);
-            // let tracks = localClient.getTracks()
-            // console.log(tracks);
         }
     }
 
@@ -83,6 +78,7 @@
 
     localClient.ontrack = function(e){
         console.log(' on track ', e);
+        remoteVideo.srcObject = e.streams[0]
     }
 
     function addAlert(userName, content, {type = 'success'} = {}) {
