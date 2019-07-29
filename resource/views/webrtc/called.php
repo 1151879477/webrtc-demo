@@ -96,7 +96,7 @@
             }
         },
         "user.mail": function (data) {
-            console.log(data.subject);
+            console.log(data);
             if (data.subject === "offer") {
                 //offer
                 localClient.setRemoteDescription(new RTCSessionDescription(data.data))
