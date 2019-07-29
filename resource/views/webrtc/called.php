@@ -67,11 +67,14 @@
         }
     };
 
+    let remoteVideo = document.getElementById("remoteVideo");
     localClient.oniceconnectionstatechange = function(e){
         console.log(localClient.iceConnectionState);
+        if(localClient.iceConnectionState === 'connected'){
+            remoteVideo.play();
+        }
     }
 
-    let remoteVideo = document.getElementById("remoteVideo");
 
     remoteVideo.onloadedmetadata = function(){
         console.log('start play');
