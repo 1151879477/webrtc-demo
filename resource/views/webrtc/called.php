@@ -73,7 +73,7 @@
         console.log('start play');
         remoteVideo.play();
     };
-
+    //addIceCandidate
     localClient.onaddstream = function (e) {
         console.log(e.stream);
         remoteVideo.srcObj = e.stream
@@ -117,7 +117,10 @@
                         }));
                     });
             } else if (data.subject === 'icecandidate') {
-                localClient.addIceCandidate(new RTCIceCandidate(data.data));
+                localClient.addIceCandidate(new RTCIceCandidate(data.data))
+                    .catch(error => {
+                        console.log('add icecandidate erro');
+                    });
             }
         },
         "user.loginList": function (data) {
