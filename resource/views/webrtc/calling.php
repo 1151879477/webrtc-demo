@@ -26,25 +26,39 @@
 </div>
 
 </body>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
 <script src="/user.js"></script>
 <script>
+
     let url = '127.0.0.1:9000';
     var ws = new ReconnectingWebSocket('ws://' + url + "/user");
     let userId = getUserId();
-    //登录
 
+    let routers = {
+        "othUser.login": function(data){
+            console.log(data);
+        }
+    };
     ws.onopen = function(){
-        console.log('on open');
+        //登录
         wsLogin(userId, ws);
-    }
+    };
 
     ws.onmessage = function(e){
         console.log(e.data);
-    }
+        const message = JSON.parse(e.data)
+
+        if(routers[e.type]){
+            const result = routers[e.type](message);
+            if(result){
+                ws.send(JSON.stringify(result))
+            }
+        }
+    };
+
+
 
 </script>
 </html>

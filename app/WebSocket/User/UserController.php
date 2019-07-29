@@ -19,7 +19,6 @@ use Swoft\WebSocket\Server\Annotation\Mapping\WsController;
  */
 class UserController
 {
-
     /**
      * @param Request $request
      * @param int $fd
