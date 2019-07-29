@@ -39,7 +39,6 @@
 
     let routers = {
         "othUser.login": function (data) {
-            console.log('router console', data);
             if(!loginList.includes(data.user.id)){
                 $('#userList').append(`<a href="javascript:;" class="list-group-item" data-id="${data.user.id}">${data.user.username}</a>`);
                 loginList.push(data.user.id);
