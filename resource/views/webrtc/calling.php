@@ -150,14 +150,14 @@
                     localVideo.volume = 0.0;
                     localStream.getTracks().forEach(track => localClient.addTrack(track));
 
-                    const offer = await localClient.createOffer();
-                    localClient.setLocalDescription(offer);
-                    ws.send('user.mail:'+ JSON.stringify({
-                        'to' : to,
-                        'from': getUserId(),
-                        'subject': 'offer',
-                        'data' : offer
-                    }));
+                    // const offer = await localClient.createOffer();
+                    // localClient.setLocalDescription(offer);
+                    // ws.send('user.mail:'+ JSON.stringify({
+                    //     'to' : to,
+                    //     'from': getUserId(),
+                    //     'subject': 'offer',
+                    //     'data' : offer
+                    // }));
                 })
 
         });
