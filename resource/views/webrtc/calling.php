@@ -113,6 +113,7 @@
         let localClient = createPeerConnection();
 
         localClient.onicecandidate = function(e){
+            console.log("localClient.onicecandidate ");
             if (e.candidate) {
                 ws.send('user.email:' + JSON.stringify({
                     to: remoteUserId,
