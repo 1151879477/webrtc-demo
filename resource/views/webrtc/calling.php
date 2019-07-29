@@ -84,7 +84,6 @@
         //登录
         wsLogin(userId, ws);
         ws.send('user.loginList:' + JSON.stringify({user_id: getUserId()}))
-
     };
 
     ws.onmessage = function (e) {
@@ -111,6 +110,9 @@
     $(function(){
         $('#openIm').on('click', function(){
             $('#ImModal').modal('show');
+        });
+        $('#userList').on('click', 'a', function(){
+            console.log($(this).data('id'));
         });
     });
 </script>
