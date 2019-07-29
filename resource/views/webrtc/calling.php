@@ -13,5 +13,8 @@
     var ws = new ReconnectingWebSocket('ws://' + url + "/user");
     ws.open();
 
+    let userId = getUserId();
+
+
 </script>
 </html>
