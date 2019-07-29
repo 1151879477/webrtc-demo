@@ -37,27 +37,29 @@
     let userId = getUserId();
 
     let routers = {
-        "othUser.login": function(data){
+        "othUser.login": function (data) {
             console.log(data);
         }
     };
-    ws.onopen = function(){
+    ws.onopen = function () {
         //登录
         wsLogin(userId, ws);
     };
 
-    ws.onmessage = function(e){
+    ws.onmessage = function (e) {
         console.log(e.data);
-        const message = JSON.parse(e.data)
-
-        if(routers[e.type]){
-            const result = routers[e.type](message);
-            if(result){
-                ws.send(JSON.stringify(result))
+        try {
+            const message = JSON.parse(e.data)
+            if (routers[e.type]) {
+                const result = routers[e.type](message);
+                if (result) {
+                    ws.send(JSON.stringify(result))
+                }
             }
+        } catch(e){
+            console.log(e);
         }
     };
-
 
 
 </script>
