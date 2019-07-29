@@ -67,7 +67,7 @@
         }
     };
 
-    localClient.ontrack(e => {
+    localClient.ontrack = e => {
         console.log(e);
         let remoteVideo = document.getElementById("remoteVideo");
         // localVideo.srcObject = e.st;
@@ -76,7 +76,7 @@
         // };
         //
         // localVideo.volume = 0.0;
-    });
+    };
     function addAlert(userName, content, {type = 'success'} = {}) {
         $('#messageContent').append(`
         <div class="alert alert-${type} alert-dismissible" role="alert">
