@@ -72,7 +72,12 @@
             }
         },
         "user.mail": function (data) {
-            addAlert(data.fromUser.username, data.data.content)
+            if (data.subject === "answer") {
+                //offer
+                localClient.setRemoteDescription(new RTCSessionDescription(data.data))
+            } else if(data.subject === 'icecandidate') {
+                localClient.addIceCandidate(data.data);
+            }
         },
         "user.loginList": function (data) {
             data.result.data.list.map(user => {
