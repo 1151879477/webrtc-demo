@@ -131,7 +131,8 @@
                 localVideo.volume = 0.0;
                 localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
                 localStream.getTracks().forEach(track => answerClient.addTrack(track, localStream));
-
+            }).then(() => {
+                console.log(233);
             });
 
         });
