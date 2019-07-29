@@ -69,25 +69,18 @@
 
     localClient.onaddstream = function (e) {
         let remoteVideo = document.getElementById("remoteVideo");
-        remoteVideo.onloadedmetadata = function () {
-            remoteVideo.play();
-        };
+        remoteVideo.srcObj = e.stream
+    };
 
+    localClient.ontrack = e => {
         console.log('on track');
-
-        // console.log(e.streams[0]);
-        // console.log(e.streams, e.streams[0].remote);
-        console.log(e);
+        let remoteVideo = document.getElementById("remoteVideo");
         if (remoteVideo.srcObj !== e.streams[0]) {
             // e.streams[0].onaddtrack = function(e){
             // remoteVideo.srcObj = e.streams[0]
             // }
             remoteVideo.srcObj = e.streams[0]
         }
-    }
-
-    localClient.ontrack = e => {
-        console.log('on track');
     };
 
     function addAlert(userName, content, {type = 'success'} = {}) {
