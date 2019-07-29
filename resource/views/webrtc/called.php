@@ -68,7 +68,7 @@
     };
 
     localClient.oniceconnectionstatechange = function(e){
-        console.log(e);
+        console.log(e.iceConnectionState);
     }
 
     let remoteVideo = document.getElementById("remoteVideo");
