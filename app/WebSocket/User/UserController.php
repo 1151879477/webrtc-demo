@@ -139,7 +139,7 @@ class UserController
      * @param $data
      * @MessageMapping()
      */
-    public function userToUser($data)
+    public function mail($data)
     {
         $requestData = json_decode($data, true);
         $toUserId = $requestData['to'];
@@ -153,10 +153,13 @@ class UserController
         if(!$toUserFd){
             return;
         }
+        $fromUser = $userDao->getUserById($fromUserId);
 
         $sendData = [
+            'type' => 'user.mail',
             'subject' => $subject,
             'fromUserId' => $fromUserId,
+            'fromUser' => $fromUser,
             'data' => $data,
             'time' => $time
         ];
