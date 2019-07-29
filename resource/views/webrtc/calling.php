@@ -28,7 +28,7 @@
 
     </div>
     <div class="col-md-3">
-        <button class="btn btn-primary" id="openIm">Im</button>
+<!--        <button class="btn btn-primary" id="openIm">Im</button>-->
     </div>
     <div class="col-md-3">
     </div>
@@ -37,7 +37,6 @@
             <a href="#" class="list-group-item disabled">用户列表</a>
         </div>
     </div>
-
 </div>
 
 </body>
@@ -73,11 +72,16 @@
         },
         "user.mail": function (data) {
             addAlert(data.fromUser.username, data.data.content)
+        },
+        "user.loginList": function(data){
+            console.log(data);
         }
     };
+
     ws.onopen = function () {
         //登录
         wsLogin(userId, ws);
+        ws.send('user.loginList:' + JSON.stringify({user_id: getUserId()}))
     };
 
     ws.onmessage = function (e) {
