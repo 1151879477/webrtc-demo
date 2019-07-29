@@ -75,6 +75,7 @@
     };
 
     localClient.onaddstream = function (e) {
+        console.log(e.stream);
         remoteVideo.srcObj = e.stream
     };
 
