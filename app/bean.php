@@ -17,6 +17,10 @@ use Swoft\Db\Database;
 use Swoft\Redis\RedisDb;
 
 
+echo "\n\n";
+echo 'mysql:dbname='.env('DB_DATABASENAME').';host='.env('DB_HOST');
+echo "\n\n";
+
 return [
     'logger'           => [
         'flushRequest' => false,
