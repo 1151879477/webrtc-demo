@@ -18,7 +18,9 @@ use Swoft\Redis\RedisDb;
 
 
 echo "\n\n";
-echo 'mysql:dbname='.env('DB_DATABASENAME').';host='.env('DB_HOST');
+echo env('DB_USERNAME');
+echo "\n\n";
+echo env('DB_PASSWORD');
 echo "\n\n";
 
 return [
