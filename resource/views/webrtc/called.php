@@ -73,13 +73,13 @@
 
     remoteVideo.onloadedmetadata = function(){
         console.log('start play');
-        remoteVideo.play();
+        // remoteVideo.play();
     };
 
     localClient.ontrack = function(e){
         console.log(' on track ', e);
         remoteVideo.srcObject = e.streams[0]
-    }
+    };
 
     function addAlert(userName, content, {type = 'success'} = {}) {
         $('#messageContent').append(`
