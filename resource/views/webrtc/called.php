@@ -69,13 +69,11 @@
 
 
     localClient.ontrack = e => {
-        console.log(e);
         let remoteVideo = document.getElementById("remoteVideo");
         remoteVideo.onloadedmetadata = function(){
             remoteVideo.play();
         };
 
-        console.log(e.streams[0]);
         if(remoteVideo.srcObj !== e.streams[0]){
             remoteVideo.srcObj = e.streams[0]
         }
