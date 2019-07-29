@@ -67,15 +67,17 @@
         }
     };
 
+
     localClient.ontrack = e => {
         console.log(e);
         let remoteVideo = document.getElementById("remoteVideo");
-        // localVideo.srcObject = e.st;
-        // localVideo.onloadedmetadata = function (e) {
-        //     localVideo.play();
-        // };
-        //
-        // localVideo.volume = 0.0;
+        remoteVideo.onloadedmetadata = function(){
+            remoteVideo.play();
+        };
+
+        if(remoteVideo.srcObj !== e.streams[0]){
+            remoteVideo.srcObj = e.streams[0]
+        }
     };
     function addAlert(userName, content, {type = 'success'} = {}) {
         $('#messageContent').append(`
