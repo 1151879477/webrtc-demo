@@ -70,9 +70,10 @@
         if(localClient.iceConnectionState === 'connected') {
             let remoteVideo = document.getElementById("remoteVideo");
             console.log(remoteVideo);
+            let tracks = localClient.getTracks()
+            console.log(tracks);
         }
     }
-
 
     remoteVideo.onloadedmetadata = function(){
         console.log('start play');
@@ -169,27 +170,27 @@
                 audio: true, // We want an audio track
                 video: true // ...and we want a video track
             };
-            navigator.mediaDevices.getUserMedia(mediaConstraints)
-                .then(localStream => {
-                    let localVideo = document.getElementById("localVideo");
-                    localVideo.srcObject = localStream;
-                    localVideo.onloadedmetadata = function (e) {
-                        localVideo.play();
-                    };
+            // navigator.mediaDevices.getUserMedia(mediaConstraints)
+            //     .then(localStream => {
+            //         let localVideo = document.getElementById("localVideo");
+            //         localVideo.srcObject = localStream;
+            //         localVideo.onloadedmetadata = function (e) {
+            //             localVideo.play();
+            //         };
+            //
+            //         localVideo.volume = 0.0;
+            //         localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
 
-                    localVideo.volume = 0.0;
-                    // localStream.getTracks().forEach(track => localClient.addTrack(track, localStream));
+                    // const offer = localClient.createOffer();
+                    // localClient.setLocalDescription(offer);
 
-                    const offer = localClient.createOffer();
-                    localClient.setLocalDescription(offer);
-
-                    ws.send('user.mail:' + JSON.stringify({
-                        'to': to,
-                        'from': getUserId(),
-                        'subject': 'offer',
-                        'data': offer
-                    }));
-                })
+                //     ws.send('user.mail:' + JSON.stringify({
+                //         'to': to,
+                //         'from': getUserId(),
+                //         'subject': 'offer',
+                //         'data': offer
+                //     }));
+                // })
 
         });
     });
