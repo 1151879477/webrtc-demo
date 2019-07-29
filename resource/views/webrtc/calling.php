@@ -20,7 +20,7 @@
     <div class="col-md-12">
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>新消息</strong> <span>某某某用户：在吗？</span>
+            <strong>没有风筝的线:</strong> <span>：在吗？</span>
         </div>
     </div>
 </div>
