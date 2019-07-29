@@ -77,9 +77,12 @@
         console.log('on track');
 
         // console.log(e.streams[0]);
-        console.log(e.streams, e.streams[0].remote);
+        // console.log(e.streams, e.streams[0].remote);
         if(remoteVideo.srcObj !== e.streams[0]){
-            remoteVideo.srcObj = e.streams[0]
+            e.streams[0].onaddtrack = function(){
+                console.log(233);
+            }
+            // remoteVideo.srcObj = e.streams[0]
         }
     };
     function addAlert(userName, content, {type = 'success'} = {}) {
