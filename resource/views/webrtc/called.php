@@ -75,7 +75,7 @@
     };
     //addIceCandidate
     localClient.onaddstream = function (e) {
-        console.log(e.stream);
+        console.log('on add strream', e.stream);
         remoteVideo.srcObj = e.stream
     };
 
