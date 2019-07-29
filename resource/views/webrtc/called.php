@@ -131,7 +131,7 @@
     ws.onmessage = function (e) {
         let message = {};
 
-        console.log(e.data);
+        console.log(e);
         try {
             message = JSON.parse(e.data)
         } catch (e) {
